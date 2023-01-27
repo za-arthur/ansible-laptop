@@ -1,0 +1,6 @@
+---
+- name: "neovim tasks"
+  tags:
+      - "editor"
+  import_tasks:
+    file: "neovim.yml"

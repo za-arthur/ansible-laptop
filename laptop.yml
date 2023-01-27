@@ -1,0 +1,6 @@
+---
+- name: Ansible Playbook to setup a new laptop
+  hosts: laptop
+  roles:
+    - role: editors
+      become: yes

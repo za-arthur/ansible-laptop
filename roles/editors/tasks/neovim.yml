@@ -1,0 +1,14 @@
+---
+- name: "Install neovim"
+  tags:
+    - "neovim"
+  ansible.builtin.apt:
+    deb: https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb
+    state: "present"
+
+- name: "Install Hack Nerd Font"
+  tags:
+    - "neovim"
+  ansible.builtin.apt:
+    pkg: fonts-hack-ttf
+    state: latest
