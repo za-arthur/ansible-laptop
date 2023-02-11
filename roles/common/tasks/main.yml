@@ -1,0 +1,6 @@
+---
+- name: "Common tasks"
+  tags:
+    - "common"
+  import_tasks:
+    file: "fonts.yml"
