@@ -1,0 +1,18 @@
+---
+- name: "Get dotfile name from {{ dotfile_path }}"
+  set_fact:
+    dotfile_src: "{{ dotfile_path | basename | split('_') | last }}"
+    dotfile_dst: ".{{ dotfile_path | basename | split('_') | last }}"
+
+- name: "Backup existing {{ dotfile_dst }}"
+  copy:
+    src: "{{ local_home }}/{{ dotfile_dst }}"
+    dest: "{{ local_home }}/{{ dotfile_dst }}.back"
+  ignore_errors: yes
+
+- name: "Create symlink {{ dotfile_dst }}"
+  file:
+    src: "{{ dotfile_path }}"
+    dest: "{{ local_home }}/{{ dotfile_dst }}"
+    state: link
+    force: true

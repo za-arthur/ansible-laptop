@@ -1,0 +1,10 @@
+[core]
+	excludesfile = /home/artur/.gitignore
+	pager = less -F -X
+[pull]
+	ff = only
+[url "ssh://git@github.com/"]
+	insteadof = https://github.com/
+[user]
+	email = zaartur@gmail.com
+	name = Artur Zakirov
