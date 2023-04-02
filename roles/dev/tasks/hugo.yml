@@ -1,0 +1,20 @@
+---
+- name: "Import go_ensure"
+  import_tasks: "go_ensure.yml"
+
+- name: "Check that the Hugo tar exists"
+  stat:
+    path: "{{ golang_cache_dir }}/{{ hugo_tarball }}"
+  register: hugo_tar
+
+- name: "Download the Hugo tarball"
+  get_url:
+    url: "{{ hugo_download_location }}"
+    dest: "{{ golang_cache_dir }}"
+  when: not hugo_tar.stat.exists
+
+- name: "Extract the Go tarball"
+  unarchive:
+    src: "{{ golang_cache_dir }}/{{ hugo_tarball }}"
+    dest: "{{ golang_gopath }}/bin"
+    remote_src: yes

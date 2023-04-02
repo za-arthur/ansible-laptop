@@ -1,0 +1,17 @@
+---
+- name: "Ensure cache dir exists"
+  file:
+    path: "{{ golang_cache_dir }}"
+    state: directory
+
+- name: "Ensure that GOPATH exists"
+  file:
+    path: "{{ golang_gopath }}"
+    state: directory
+    mode: 0775
+
+- name: "Ensure that GOPATH/bin exists"
+  file:
+    path: "{{ golang_gopath }}/bin"
+    state: directory
+    mode: 0775

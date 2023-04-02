@@ -2,7 +2,9 @@
 - name: "Ansible Playbook to setup a new laptop"
   hosts: "laptop"
   roles:
-    - role: "editors"
-      become: yes
     - role: "common"
-      become: yes
+      tags:
+        - "common"
+    - role: "dev"
+      tags:
+        - "dev"

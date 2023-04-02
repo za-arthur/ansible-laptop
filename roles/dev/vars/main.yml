@@ -1,0 +1,22 @@
+---
+# Go
+golang_version: "1.20.2"
+golang_tarball_repo: "https://go.dev/dl"
+golang_tarball: "go{{ golang_version }}.linux-amd64.tar.gz"
+golang_download_location: "{{ golang_tarball_repo }}/{{ golang_tarball }}"
+
+golang_gopath: "{{ lookup('env','HOME') }}/go"
+golang_install_dir: "/usr/local"
+golang_env:
+  GOPATH: "{{ golang_gopath }}"
+  GOROOT: "{{ golang_install_dir }}/go"
+
+golang_cache_dir: /tmp/cacheansible
+
+golang_version_string: "go version go{{ golang_version }} linux/amd64"
+
+# Hugo
+hugo_version: "0.111.3"
+hugo_tarball_repo: "https://github.com/gohugoio/hugo/releases/download"
+hugo_tarball: "hugo_{{ hugo_version }}_Linux-64bit.tar.gz"
+hugo_download_location: "{{ hugo_tarball_repo }}/v{{ hugo_version }}/{{ hugo_tarball }}"

@@ -1,6 +1,10 @@
 ---
-- name: "Common tasks"
+- name: "Import fonts"
   tags:
-    - "common"
-  import_tasks:
-    file: "fonts.yml"
+    - "fonts"
+  import_tasks: "fonts.yml"
+
+- name: "Import dotfiles"
+  tags:
+    - "dotfiles"
+  import_tasks: "dotfiles.yml"

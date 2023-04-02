@@ -2,15 +2,16 @@
 - name: "Install Hack TrueType fonts"
   tags:
     - "nerd_font"
+  become: yes
   ansible.builtin.apt:
     name: "fonts-hack-ttf"
-    state: "latest"
+    state: latest
 
 - name: "Rebuild fonts cache"
+  become: yes
   ansible.builtin.command: "fc-cache -v -f"
 
 - name: "Set Hack 13 font"
   tags:
     - "nerd_font"
-  become: false
   ansible.builtin.command: "gsettings set org.gnome.desktop.interface monospace-font-name \"Hack 13\""

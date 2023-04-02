@@ -1,0 +1,34 @@
+---
+- name: "Import go_ensure"
+  import_tasks: "go_ensure.yml"
+
+- name: "Register the current Go version"
+  command: "{{ golang_install_dir }}/go/bin/go version"
+  ignore_errors: yes
+  register: "go_version"
+  changed_when: false
+
+- name: "Delete existing Go if it's different version"
+  file:
+    path: "{{ golang_install_dir }}/go"
+    state: absent
+  when: "(go_version.stdout is defined) and (go_version.stdout != golang_version_string )"
+
+- name: "Check that the Go tar exists"
+  stat:
+    path: "{{ golang_cache_dir }}/{{ golang_tarball }}"
+  register: golang_tar
+
+- name: "Download the Go tarball"
+  get_url:
+    url: "{{ golang_download_location }}"
+    dest: "{{ golang_cache_dir }}"
+  when: not golang_tar.stat.exists
+
+- name: "Extract the Go tarball"
+  become: yes
+  unarchive:
+    src: "{{ golang_cache_dir }}/{{ golang_tarball }}"
+    dest: "{{ golang_install_dir }}"
+    remote_src: yes
+    creates: "{{ golang_install_dir }}/go"

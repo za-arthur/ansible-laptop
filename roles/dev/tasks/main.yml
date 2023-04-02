@@ -1,0 +1,10 @@
+---
+- name: "Import go"
+  import_tasks: "go.yml"
+  tags:
+    - "go"
+
+- name: "Import hugo"
+  import_tasks: "hugo.yml"
+  tags:
+    - "hugo"
