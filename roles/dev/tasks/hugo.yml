@@ -1,20 +1,33 @@
 ---
-- name: "Import go_ensure"
-  import_tasks: "go_ensure.yml"
+- name: "Ensure cache dir exists"
+  file:
+    path: "{{ dev_cache_dir }}"
+    state: directory
+
+- name: "Retrieve latest hugo version"
+  shell: >
+    curl -s "https://api.github.com/repos/gohugoio/hugo/releases/latest" | grep -Po '"tag_name": "v\K[^"]*'
+  register: retrieve_hugo_version
+  changed_when: False
+
+- name: "Set latest hugo version"
+  set_fact:
+    hugo_version: "{{ retrieve_hugo_version.stdout }}"
 
 - name: "Check that the Hugo tar exists"
   stat:
-    path: "{{ golang_cache_dir }}/{{ hugo_tarball }}"
+    path: "{{ dev_cache_dir }}/{{ hugo_tarball }}"
   register: hugo_tar
 
 - name: "Download the Hugo tarball"
   get_url:
     url: "{{ hugo_download_location }}"
-    dest: "{{ golang_cache_dir }}"
+    dest: "{{ dev_cache_dir }}"
   when: not hugo_tar.stat.exists
 
 - name: "Extract the Go tarball"
+  become: yes
   unarchive:
-    src: "{{ golang_cache_dir }}/{{ hugo_tarball }}"
-    dest: "{{ golang_gopath }}/bin"
+    src: "{{ dev_cache_dir }}/{{ hugo_tarball }}"
+    dest: "/usr/local/bin"
     remote_src: yes

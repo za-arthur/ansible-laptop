@@ -1,0 +1,33 @@
+---
+- name: "Ensure cache dir exists"
+  file:
+    path: "{{ dev_cache_dir }}"
+    state: directory
+
+- name: "Retrieve latest lazygit version"
+  shell: >
+    curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*'
+  register: retrieve_lazygit_version
+  changed_when: False
+
+- name: "Set latest lazygit version"
+  set_fact:
+    lazygit_version: "{{ retrieve_lazygit_version.stdout }}"
+
+- name: "Check that the lazygit tar exists"
+  stat:
+    path: "{{ dev_cache_dir }}/{{ lazygit_tarball }}"
+  register: lazygit_tar
+
+- name: "Download the lazygit tarball"
+  get_url:
+    url: "{{ lazygit_download_location }}"
+    dest: "{{ dev_cache_dir }}"
+  when: not lazygit_tar.stat.exists
+
+- name: "Extract the Go tarball"
+  become: yes
+  unarchive:
+    src: "{{ dev_cache_dir }}/{{ lazygit_tarball }}"
+    dest: "/usr/local/bin"
+    remote_src: yes

@@ -1,5 +1,9 @@
 .vscode/
+
 .gdb_history
 
 .bundle/
 vendor/
+
+compile_commands.json
+.cache/

@@ -8,3 +8,8 @@
   import_tasks: "hugo.yml"
   tags:
     - "hugo"
+
+- name: "Import lazygit"
+  import_tasks: "lazygit.yml"
+  tags:
+    - "lazygit"

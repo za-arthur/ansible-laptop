@@ -16,19 +16,19 @@
 
 - name: "Check that the Go tar exists"
   stat:
-    path: "{{ golang_cache_dir }}/{{ golang_tarball }}"
+    path: "{{ dev_cache_dir }}/{{ golang_tarball }}"
   register: golang_tar
 
 - name: "Download the Go tarball"
   get_url:
     url: "{{ golang_download_location }}"
-    dest: "{{ golang_cache_dir }}"
+    dest: "{{ dev_cache_dir }}"
   when: not golang_tar.stat.exists
 
 - name: "Extract the Go tarball"
   become: yes
   unarchive:
-    src: "{{ golang_cache_dir }}/{{ golang_tarball }}"
+    src: "{{ dev_cache_dir }}/{{ golang_tarball }}"
     dest: "{{ golang_install_dir }}"
     remote_src: yes
     creates: "{{ golang_install_dir }}/go"
