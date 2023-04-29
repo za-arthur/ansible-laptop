@@ -1,0 +1,13 @@
+---
+- name: "Install clangd"
+  become: yes
+  ansible.builtin.apt:
+    name: "clangd-15"
+    state: latest
+
+- name: "Create symlink to clangd"
+  become: yes
+  file:
+    src: /bin/clangd-15
+    dest: /usr/local/bin/clangd
+    state: link

@@ -1,7 +1,7 @@
 ---
 - name: "Install Hack TrueType fonts"
   tags:
-    - "nerd_font"
+    - "fonts_hack"
   become: yes
   ansible.builtin.apt:
     name: "fonts-hack-ttf"
