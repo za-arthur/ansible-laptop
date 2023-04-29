@@ -11,3 +11,9 @@
     src: /bin/clangd-15
     dest: /usr/local/bin/clangd
     state: link
+
+- name: "Install bear"
+  become: yes
+  ansible.builtin.apt:
+    name: "bear"
+    state: latest
