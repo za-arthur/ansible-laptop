@@ -5,14 +5,14 @@
     state: directory
 
 - name: "Retrieve latest hugo version"
-  shell: >
-    curl -s "https://api.github.com/repos/gohugoio/hugo/releases/latest" | grep -Po '"tag_name": "v\K[^"]*'
-  register: retrieve_hugo_version
-  changed_when: False
+  uri:
+    url: "{{ hugo_latest_url }}"
+    return_content: true
+  register: hugo_latest
 
 - name: "Set latest hugo version"
   set_fact:
-    hugo_version: "{{ retrieve_hugo_version.stdout }}"
+    hugo_version: "{{ hugo_latest.json['tag_name'] | regex_replace('^v','') }}"
 
 - name: "Check that the Hugo tar exists"
   stat:

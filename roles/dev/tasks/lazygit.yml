@@ -5,14 +5,14 @@
     state: directory
 
 - name: "Retrieve latest lazygit version"
-  shell: >
-    curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*'
-  register: retrieve_lazygit_version
-  changed_when: False
+  uri:
+    url: "{{ lazygit_latest_url }}"
+    return_content: true
+  register: lazygit_latest
 
 - name: "Set latest lazygit version"
   set_fact:
-    lazygit_version: "{{ retrieve_lazygit_version.stdout }}"
+    lazygit_version: "{{ lazygit_latest.json['tag_name'] | regex_replace('^v','') }}"
 
 - name: "Check that the lazygit tar exists"
   stat:

@@ -16,11 +16,13 @@ golang_env:
 golang_version_string: "go version go{{ golang_version }} linux/amd64"
 
 # Hugo
-hugo_tarball_repo: "https://github.com/gohugoio/hugo/releases/download"
+hugo_latest_url: "https://api.github.com/repos/gohugoio/hugo/releases/latest"
+hugo_tarball_url: "https://github.com/gohugoio/hugo/releases/download"
 hugo_tarball: "hugo_{{ hugo_version }}_Linux-64bit.tar.gz"
-hugo_download_location: "{{ hugo_tarball_repo }}/v{{ hugo_version }}/{{ hugo_tarball }}"
+hugo_download_location: "{{ hugo_tarball_url }}/v{{ hugo_version }}/{{ hugo_tarball }}"
 
 # Lazygit
-lazygit_tarball_repo: "https://github.com/jesseduffield/lazygit/releases/download"
+lazygit_latest_url: "https://api.github.com/repos/jesseduffield/lazygit/releases/latest"
+lazygit_tarball_url: "https://github.com/jesseduffield/lazygit/releases/download"
 lazygit_tarball: "lazygit_{{ lazygit_version }}_Linux_x86_64.tar.gz"
-lazygit_download_location: "{{ lazygit_tarball_repo }}/v{{ lazygit_version }}/{{ lazygit_tarball }}"
+lazygit_download_location: "{{ lazygit_tarball_url }}/v{{ lazygit_version }}/{{ lazygit_tarball }}"
