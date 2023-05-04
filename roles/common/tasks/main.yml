@@ -8,3 +8,8 @@
   tags:
     - "dotfiles"
   import_tasks: "dotfiles.yml"
+
+- name: "Import terminal"
+  tags:
+    - "terminal"
+  import_tasks: "terminal.yml"
