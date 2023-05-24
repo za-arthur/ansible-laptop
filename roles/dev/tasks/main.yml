@@ -13,9 +13,3 @@
   import_tasks: "lazygit.yml"
   tags:
     - "lazygit"
-
-- name: "Import clangd"
-  import_tasks: "clangd.yml"
-  tags:
-    - "clangd"
-    - "dev_editor"
