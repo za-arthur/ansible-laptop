@@ -1,5 +1,6 @@
 local wezterm = require 'wezterm'
 local config = {}
+local act = wezterm.action
 
 --
 -- Appearance
@@ -14,32 +15,32 @@ config.keys = {
   {
     key = 'r',
     mods = 'CTRL|ALT',
-    action = wezterm.action.SplitHorizontal {domain = "CurrentPaneDomain"},
+    action = act.SplitHorizontal {domain = "CurrentPaneDomain"},
   },
   {
     key = 'd',
     mods = 'CTRL|ALT',
-    action = wezterm.action.SplitVertical {domain = "CurrentPaneDomain"},
+    action = act.SplitVertical {domain = "CurrentPaneDomain"},
   },
   {
     key = 'LeftArrow',
     mods = 'SHIFT|ALT',
-    action = wezterm.action.AdjustPaneSize {"Left", 1},
+    action = act.AdjustPaneSize {"Left", 1},
   },
   {
     key = 'RightArrow',
     mods = 'SHIFT|ALT',
-    action = wezterm.action.AdjustPaneSize {"Right", 1},
+    action = act.AdjustPaneSize {"Right", 1},
   },
   {
     key = 'UpArrow',
     mods = 'SHIFT|ALT',
-    action = wezterm.action.AdjustPaneSize {"Up", 1},
+    action = act.AdjustPaneSize {"Up", 1},
   },
   {
     key = 'DownArrow',
     mods = 'SHIFT|ALT',
-    action = wezterm.action.AdjustPaneSize {"Down", 1},
+    action = act.AdjustPaneSize {"Down", 1},
   },
 }
 
@@ -55,7 +56,7 @@ wezterm.on('open-uri', function(window, pane, uri)
   if start == 1 then
     local pid = uri:sub(match_end + 1)
     window:perform_action(
-      wezterm.action.SpawnCommandInNewTab {
+      act.SpawnCommandInNewTab {
         args = { 'gdb', '-p', pid },
       },
       pane
@@ -74,5 +75,15 @@ table.insert(config.hyperlink_rules, {
   regex = 'pid:\\d+',
   format = '$0',
 })
+
+wezterm.on('window-focus-changed', function(window, pane)
+  if window:is_focused() then
+    local has_selection = window:get_selection_text_for_pane(pane) ~= ''
+
+    if has_selection then
+      window:perform_action(act.ClearSelection, pane)
+    end
+  end
+end)
 
 return config
