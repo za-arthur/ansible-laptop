@@ -1,17 +1,17 @@
 ---
-- name: "Install Hack TrueType fonts"
+- name: "Install JetBrains fonts"
   tags:
-    - "fonts_hack"
+    - "fonts_jetbrains"
   become: yes
   ansible.builtin.apt:
-    name: "fonts-hack-ttf"
+    name: "fonts-jetbrains-mono"
     state: latest
 
 - name: "Rebuild fonts cache"
   become: yes
   ansible.builtin.command: "fc-cache -v -f"
 
-- name: "Set Hack 13 font"
+- name: "Set JetBrains font"
   tags:
-    - "nerd_font"
-  ansible.builtin.command: "gsettings set org.gnome.desktop.interface monospace-font-name \"Hack 13\""
+    - "fonts_jetbrains"
+  ansible.builtin.command: "gsettings set org.gnome.desktop.interface monospace-font-name \"JetBrains Mono 13\""

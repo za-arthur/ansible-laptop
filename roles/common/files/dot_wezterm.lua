@@ -8,8 +8,9 @@ local act = wezterm.action
 
 config.color_scheme = 'Dark+'
 
-config.font = wezterm.font 'Hack'
+config.font = wezterm.font 'JetBrains Mono'
 config.font_size = 13
+config.warn_about_missing_glyphs = false
 
 config.keys = {
   {

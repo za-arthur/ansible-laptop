@@ -29,8 +29,12 @@ fi
 # Go
 export GOROOT="/usr/local/go"
 export GOPATH="$HOME/go"
-export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
+PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 
 # Perlbrew
 export PERLBREW_ROOT="$HOME/perlbrew"
 export PERLBREW_HOME="$HOME/perlbrew"
+
+PATH="/home/artur/.local/bin:$PATH"
+
+export PATH

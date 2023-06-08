@@ -13,3 +13,8 @@
   tags:
     - "terminal"
   import_tasks: "terminal.yml"
+
+- name: "Import CLI tools"
+  tags:
+    - "cli_tools"
+  import_tasks: "cli_tools.yml"

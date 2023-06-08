@@ -1,0 +1,8 @@
+---
+- name: "Install lsd (ls command)"
+  tags:
+    - "lsd-ls"
+  become: yes
+  ansible.builtin.apt:
+    name: "lsd"
+    state: latest
