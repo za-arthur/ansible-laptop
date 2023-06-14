@@ -3,13 +3,16 @@
   import_tasks: "go.yml"
   tags:
     - "go"
+    - "update_tools"
 
 - name: "Import hugo"
   import_tasks: "hugo.yml"
   tags:
     - "hugo"
+    - "update_tools"
 
 - name: "Import lazygit"
   import_tasks: "lazygit.yml"
   tags:
     - "lazygit"
+    - "update_tools"

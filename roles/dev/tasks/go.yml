@@ -9,6 +9,7 @@
   ignore_errors: yes
 
 - name: "Delete existing Go if it's different version"
+  become: yes
   file:
     path: "{{ golang_install_dir }}/go"
     state: absent
