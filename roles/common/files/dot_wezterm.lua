@@ -8,8 +8,16 @@ local act = wezterm.action
 
 config.color_scheme = 'Dark+'
 
-config.font = wezterm.font 'JetBrains Mono'
 config.font_size = 13
+config.line_height = 0.95
+
+config.font = wezterm.font_with_fallback {
+  {
+    family = 'JetBrains Mono',
+    harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' },
+  },
+  'Hack'
+}
 config.warn_about_missing_glyphs = false
 
 config.keys = {
