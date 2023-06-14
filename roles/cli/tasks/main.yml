@@ -1,0 +1,15 @@
+---
+- name: "Import terminal"
+  tags:
+    - "terminal"
+  import_tasks: "terminal.yml"
+
+- name: "Import CLI tools"
+  tags:
+    - "tools"
+  import_tasks: "tools.yml"
+
+- name: "Import dua"
+  tags:
+    - "dua"
+  import_tasks: "dua.yml"

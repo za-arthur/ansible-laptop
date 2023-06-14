@@ -1,0 +1,42 @@
+---
+- name: "Ensure cache dir exists"
+  file:
+    path: "{{ common_cache_dir }}"
+    state: directory
+
+- name: "Retrieve latest dua version"
+  uri:
+    url: "{{ dua_latest_url }}"
+    return_content: true
+  register: dua_latest
+
+- name: "Set latest dua version"
+  set_fact:
+    dua_version: "{{ dua_latest.json['tag_name'] | regex_replace('^v','') }}"
+
+- name: "Check that the dua tar exists"
+  stat:
+    path: "{{ common_cache_dir }}/{{ dua_tarball }}"
+  register: dua_tar
+
+- name: "Download the dua tarball"
+  get_url:
+    url: "{{ dua_download_location }}"
+    dest: "{{ common_cache_dir }}"
+  when: not dua_tar.stat.exists
+
+- name: "Ensure install location exists"
+  become: yes
+  file:
+    path: "{{ dua_install_location }}"
+    state: directory
+
+- name: "Extract the dua tarball"
+  become: yes
+  unarchive:
+    src: "{{ common_cache_dir }}/{{ dua_tarball }}"
+    remote_src: yes
+    dest: "{{ dua_install_location }}"
+    extra_opts:
+      - "--strip-components"
+      - "1"

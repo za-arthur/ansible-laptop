@@ -25,9 +25,12 @@
     dest: "{{ dev_cache_dir }}"
   when: not lazygit_tar.stat.exists
 
-- name: "Extract the Go tarball"
+- name: "Extract the lazygit tarball"
   become: yes
   unarchive:
     src: "{{ dev_cache_dir }}/{{ lazygit_tarball }}"
-    dest: "/usr/local/bin"
     remote_src: yes
+    dest: "/usr/local/bin"
+    extra_opts:
+      - "--add-file"
+      - "lazygit"

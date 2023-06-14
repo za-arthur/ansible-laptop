@@ -8,3 +8,6 @@
     - role: "dev"
       tags:
         - "dev"
+    - role: "cli"
+      tags:
+        - "cli"
