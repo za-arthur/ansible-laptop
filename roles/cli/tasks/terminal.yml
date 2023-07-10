@@ -1,19 +1,50 @@
 ---
-- name: "Install wezterm flatpak package"
+- name: "Ensure cache dir exists"
+  file:
+    path: "{{ common_cache_dir }}"
+    state: directory
+
+- name: "Retrieve latest wezterm version"
+  uri:
+    url: "{{ wezterm_latest_url }}"
+    return_content: true
+  register: wezterm_latest
+
+- name: "Set latest wezterm version"
+  set_fact:
+    wezterm_version: "{{ wezterm_latest.json['tag_name'] }}"
+
+- name: "Check that the wezterm tar exists"
+  stat:
+    path: "{{ common_cache_dir }}/{{ wezterm_deb }}"
+  register: wezterm_deb_cache
+
+- name: "Download the wezterm deb"
+  get_url:
+    url: "{{ wezterm_download_location }}"
+    dest: "{{ common_cache_dir }}"
+  when: not wezterm_deb_cache.stat.exists
+
+- name: "Install wezterm package"
   become: yes
-  community.general.flatpak:
-    name: "org.wezfurlong.wezterm"
-    state: present
+  ansible.builtin.apt:
+    deb: "{{ common_cache_dir }}/{{ wezterm_deb }}"
+
+- name: "Set wezterm dot file path"
+  set_fact:
+    wezterm_dotfile: "{{ role_path }}/files/dot_wezterm.lua"
 
 - name: "Create wezterm configuration file"
-  include_tasks: "dotfiles_create.yml"
+  include_role:
+    name: "common"
+    tasks_from: "dotfiles_create"
   vars:
-    dotfile_path: "{{ role_path }}/files/dot_wezterm.lua"
+    dotfile_path: "{{ wezterm_dotfile }}"
 
 - name: "Select wezterm as default terminal"
   become: yes
   community.general.alternatives:
     link: "/usr/bin/x-terminal-emulator"
     name: "x-terminal-emulator"
-    path: "/var/lib/flatpak/exports/bin/org.wezfurlong.wezterm"
+    path: "/usr/bin/open-wezterm-here"
     state: selected
