@@ -2,14 +2,17 @@
 - name: "Import terminal"
   tags:
     - "terminal"
+    - "update_tools"
   import_tasks: "terminal.yml"
 
 - name: "Import CLI tools"
   tags:
     - "tools"
+    - "update_tools"
   import_tasks: "tools.yml"
 
 - name: "Import dua"
   tags:
     - "dua"
+    - "update_tools"
   import_tasks: "dua.yml"
