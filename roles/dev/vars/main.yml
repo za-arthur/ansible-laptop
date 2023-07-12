@@ -26,3 +26,9 @@ lazygit_latest_url: "https://api.github.com/repos/jesseduffield/lazygit/releases
 lazygit_tarball_url: "https://github.com/jesseduffield/lazygit/releases/download"
 lazygit_tarball: "lazygit_{{ lazygit_version }}_Linux_x86_64.tar.gz"
 lazygit_download_location: "{{ lazygit_tarball_url }}/v{{ lazygit_version }}/{{ lazygit_tarball }}"
+
+# Act
+act_latest_url: "https://api.github.com/repos/nektos/act/releases/latest"
+act_tarball_url: "https://github.com/nektos/act/releases/download"
+act_tarball: "act_Linux_x86_64.tar.gz"
+act_download_location: "{{ act_tarball_url }}/v{{ act_version }}/{{ act_tarball }}"
