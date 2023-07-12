@@ -16,9 +16,3 @@
   tags:
     - "lazygit"
     - "update_tools"
-
-- name: "Import act"
-  import_tasks: "act.yml"
-  tags:
-    - "act"
-    - "update_tools"
