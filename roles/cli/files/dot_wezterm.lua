@@ -59,7 +59,7 @@ config.window_decorations = "RESIZE"
 -- Handle events
 --
 
--- Use the defaults as a base
+-- Handle psql pid as a link
 wezterm.on('open-uri', function(window, pane, uri)
   local start, match_end = uri:find 'pid:'
   if start == 1 then
@@ -85,6 +85,7 @@ table.insert(config.hyperlink_rules, {
   format = '$0',
 })
 
+-- Clean up selection on tab focus
 wezterm.on('window-focus-changed', function(window, pane)
   if window:is_focused() then
     local has_selection = window:get_selection_text_for_pane(pane) ~= ''
