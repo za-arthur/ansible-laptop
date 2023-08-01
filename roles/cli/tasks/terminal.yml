@@ -1,8 +1,9 @@
 ---
-- name: "Ensure cache dir exists"
-  file:
-    path: "{{ cli_cache_dir }}"
-    state: directory
+- name: "Register the current wezterm version"
+  command: "/usr/bin/wezterm --version"
+  register: "wezterm_bin_version"
+  changed_when: false
+  ignore_errors: yes
 
 - name: "Retrieve latest wezterm version"
   uri:
@@ -14,37 +15,45 @@
   set_fact:
     wezterm_version: "{{ wezterm_latest.json['tag_name'] }}"
 
-- name: "Check that the wezterm tar exists"
-  stat:
-    path: "{{ cli_cache_dir }}/{{ wezterm_deb }}"
-  register: wezterm_deb_cache
+- name: "Download and install wezterm"
+  block:
+    - name: "Ensure cache dir exists"
+      file:
+        path: "{{ cli_cache_dir }}"
+        state: directory
 
-- name: "Download the wezterm deb"
-  get_url:
-    url: "{{ wezterm_download_location }}"
-    dest: "{{ cli_cache_dir }}"
-  when: not wezterm_deb_cache.stat.exists
+    - name: "Check that the wezterm tar exists"
+      stat:
+        path: "{{ cli_cache_dir }}/{{ wezterm_deb }}"
+      register: wezterm_deb_cache
 
-- name: "Install wezterm package"
-  become: yes
-  ansible.builtin.apt:
-    deb: "{{ cli_cache_dir }}/{{ wezterm_deb }}"
+    - name: "Download the wezterm deb"
+      get_url:
+        url: "{{ wezterm_download_location }}"
+        dest: "{{ cli_cache_dir }}"
+      when: not wezterm_deb_cache.stat.exists
 
-- name: "Set wezterm dot file path"
-  set_fact:
-    wezterm_dotfile: "{{ role_path }}/files/dot_wezterm.lua"
+    - name: "Install wezterm package"
+      become: yes
+      ansible.builtin.apt:
+        deb: "{{ cli_cache_dir }}/{{ wezterm_deb }}"
 
-- name: "Create wezterm configuration file"
-  include_role:
-    name: "common"
-    tasks_from: "dotfiles_create"
-  vars:
-    dotfile_path: "{{ wezterm_dotfile }}"
+    - name: "Set wezterm dot file path"
+      set_fact:
+        wezterm_dotfile: "{{ role_path }}/files/dot_wezterm.lua"
 
-- name: "Select wezterm as default terminal"
-  become: yes
-  community.general.alternatives:
-    link: "/usr/bin/x-terminal-emulator"
-    name: "x-terminal-emulator"
-    path: "/usr/bin/open-wezterm-here"
-    state: selected
+    - name: "Create wezterm configuration file"
+      include_role:
+        name: "common"
+        tasks_from: "dotfiles_create"
+      vars:
+        dotfile_path: "{{ wezterm_dotfile }}"
+
+    - name: "Select wezterm as default terminal"
+      become: yes
+      community.general.alternatives:
+        link: "/usr/bin/x-terminal-emulator"
+        name: "x-terminal-emulator"
+        path: "/usr/bin/open-wezterm-here"
+        state: selected
+  when: "wezterm_bin_version.stdout != wezterm_version_string"

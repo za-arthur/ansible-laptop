@@ -1,8 +1,9 @@
 ---
-- name: "Ensure cache dir exists"
-  file:
-    path: "{{ dev_cache_dir }}"
-    state: directory
+- name: "Register the current hugo version"
+  command: "/usr/local/bin/hugo version"
+  register: "hugo_bin_version"
+  changed_when: false
+  ignore_errors: yes
 
 - name: "Retrieve latest hugo version"
   uri:
@@ -14,23 +15,31 @@
   set_fact:
     hugo_version: "{{ hugo_latest.json['tag_name'] | regex_replace('^v','') }}"
 
-- name: "Check that the hugo tar exists"
-  stat:
-    path: "{{ dev_cache_dir }}/{{ hugo_tarball }}"
-  register: hugo_tar
+- name: "Download and install hugo"
+  block:
+    - name: "Ensure cache dir exists"
+      file:
+        path: "{{ dev_cache_dir }}"
+        state: directory
 
-- name: "Download the hugo tarball"
-  get_url:
-    url: "{{ hugo_download_location }}"
-    dest: "{{ dev_cache_dir }}"
-  when: not hugo_tar.stat.exists
+    - name: "Check that the hugo tar exists"
+      stat:
+        path: "{{ dev_cache_dir }}/{{ hugo_tarball }}"
+      register: hugo_tar
 
-- name: "Extract the hugo tarball"
-  become: yes
-  unarchive:
-    src: "{{ dev_cache_dir }}/{{ hugo_tarball }}"
-    remote_src: yes
-    dest: "/usr/local/bin"
-    extra_opts:
-      - "--add-file"
-      - "hugo"
+    - name: "Download the hugo tarball"
+      get_url:
+        url: "{{ hugo_download_location }}"
+        dest: "{{ dev_cache_dir }}"
+      when: not hugo_tar.stat.exists
+
+    - name: "Extract the hugo tarball"
+      become: yes
+      unarchive:
+        src: "{{ dev_cache_dir }}/{{ hugo_tarball }}"
+        remote_src: yes
+        dest: "/usr/local/bin"
+        extra_opts:
+          - "--add-file"
+          - "hugo"
+  when: "hugo_bin_version.stdout is not match(hugo_version_string)"

@@ -4,19 +4,21 @@ cli_cache_dir: /tmp/cacheansible
 # dua
 dua_latest_url: "https://api.github.com/repos/Byron/dua-cli/releases/latest"
 dua_tarball_url: "https://github.com/Byron/dua-cli/releases/download"
-dua_tarball: "dua-{{ dua_version_tag }}-x86_64-unknown-linux-musl.tar.gz"
-dua_download_location: "{{ dua_tarball_url }}/{{ dua_version_tag }}/{{ dua_tarball }}"
+dua_tarball: "dua-v{{ dua_version }}-x86_64-unknown-linux-musl.tar.gz"
+dua_download_location: "{{ dua_tarball_url }}/v{{ dua_version }}/{{ dua_tarball }}"
 dua_install_location: "/usr/local/bin/dua"
+dua_version_string: "dua {{ dua_version }}"
 
 # wezterm
 wezterm_latest_url: "https://api.github.com/repos/wez/wezterm/releases/latest"
 wezterm_deb_url: "https://github.com/wez/wezterm/releases/download"
 wezterm_deb: "wezterm-{{ wezterm_version }}.Ubuntu22.04.deb"
 wezterm_download_location: "{{ wezterm_deb_url }}/{{ wezterm_version }}/{{ wezterm_deb }}"
+wezterm_version_string: "wezterm {{ wezterm_version }}"
 
 # yq
 yq_latest_url: "https://api.github.com/repos/mikefarah/yq/releases/latest"
 yq_bin_url: "https://github.com/mikefarah/yq/releases/download"
-yq_bin: "yq_freebsd_386"
+yq_bin: "yq_linux_386"
 yq_download_location: "{{ yq_bin_url }}/{{ yq_version_tag }}/{{ yq_bin }}"
-
+yq_version_string: ".*version {{ yq_version_tag }}"

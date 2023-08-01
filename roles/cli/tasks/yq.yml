@@ -1,4 +1,10 @@
 ---
+- name: "Register the current yq version"
+  command: "/usr/local/bin/yq --version"
+  register: "yq_bin_version"
+  changed_when: false
+  ignore_errors: yes
+
 - name: "Retrieve latest yq version"
   uri:
     url: "{{ yq_latest_url }}"
@@ -9,12 +15,21 @@
   set_fact:
     yq_version_tag: "{{ yq_latest.json['tag_name'] }}"
 
-- name: "Download the yq binary"
-  become: yes
-  get_url:
-    url: "{{ yq_download_location }}"
-    dest: "/usr/local/bin/"
+- name: "Download and install yq"
+  block:
+    - name: "Download the yq binary"
+      become: yes
+      get_url:
+        url: "{{ yq_download_location }}"
+        dest: "/usr/local/bin/"
 
-- name: "Rename the yq binary"
-  become: yes
-  shell: "mv /usr/local/bin/{{ yq_bin }} /usr/local/bin/yq"
+    - name: "Rename the yq binary"
+      become: yes
+      shell: "mv /usr/local/bin/{{ yq_bin }} /usr/local/bin/yq"
+
+    - name: "Give execution permissions to the yq binary"
+      become: yes
+      file:
+        path: "/usr/local/bin/yq"
+        mode: "a+x"
+  when: "yq_bin_version.stdout is not match(yq_version_string)"

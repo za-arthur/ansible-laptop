@@ -1,8 +1,9 @@
 ---
-- name: "Ensure cache dir exists"
-  file:
-    path: "{{ cli_cache_dir }}"
-    state: directory
+- name: "Register the current dua version"
+  command: "{{ dua_install_location }}/dua --version"
+  register: "dua_bin_version"
+  changed_when: false
+  ignore_errors: yes
 
 - name: "Retrieve latest dua version"
   uri:
@@ -12,31 +13,39 @@
 
 - name: "Set latest dua version"
   set_fact:
-    dua_version_tag: "{{ dua_latest.json['tag_name'] }}"
+    dua_version: "{{ dua_latest.json['tag_name'] | regex_replace('^v','') }}"
 
-- name: "Check that the dua tar exists"
-  stat:
-    path: "{{ cli_cache_dir }}/{{ dua_tarball }}"
-  register: dua_tar
+- name: "Download and install dua"
+  block:
+    - name: "Ensure cache dir exists"
+      file:
+        path: "{{ cli_cache_dir }}"
+        state: directory
 
-- name: "Download the dua tarball"
-  get_url:
-    url: "{{ dua_download_location }}"
-    dest: "{{ cli_cache_dir }}"
-  when: not dua_tar.stat.exists
+    - name: "Check that the dua tar exists"
+      stat:
+        path: "{{ cli_cache_dir }}/{{ dua_tarball }}"
+      register: dua_tar
 
-- name: "Ensure install location exists"
-  become: yes
-  file:
-    path: "{{ dua_install_location }}"
-    state: directory
+    - name: "Download the dua tarball"
+      get_url:
+        url: "{{ dua_download_location }}"
+        dest: "{{ cli_cache_dir }}"
+      when: not dua_tar.stat.exists
 
-- name: "Extract the dua tarball"
-  become: yes
-  unarchive:
-    src: "{{ cli_cache_dir }}/{{ dua_tarball }}"
-    remote_src: yes
-    dest: "{{ dua_install_location }}"
-    extra_opts:
-      - "--strip-components"
-      - "1"
+    - name: "Ensure install location exists"
+      become: yes
+      file:
+        path: "{{ dua_install_location }}"
+        state: directory
+
+    - name: "Extract the dua tarball"
+      become: yes
+      unarchive:
+        src: "{{ cli_cache_dir }}/{{ dua_tarball }}"
+        remote_src: yes
+        dest: "{{ dua_install_location }}"
+        extra_opts:
+          - "--strip-components"
+          - "1"
+  when: "dua_bin_version.stdout != dua_version_string"

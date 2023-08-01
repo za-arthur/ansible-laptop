@@ -4,32 +4,35 @@
 
 - name: "Register the current Go version"
   command: "{{ golang_install_dir }}/go/bin/go version"
-  register: "go_version"
+  register: "go_bin_version"
   changed_when: false
   ignore_errors: yes
 
-- name: "Delete existing Go if it's different version"
-  become: yes
-  file:
-    path: "{{ golang_install_dir }}/go"
-    state: absent
-  when: "(go_version.stdout is defined) and (go_version.stdout != golang_version_string )"
+- name: "Download and install Go"
+  block:
+    - name: "Delete existing Go if it's different version"
+      become: yes
+      file:
+        path: "{{ golang_install_dir }}/go"
+        state: absent
+      when: "(go_bin_version.stdout is defined)"
 
-- name: "Check that the Go tar exists"
-  stat:
-    path: "{{ dev_cache_dir }}/{{ golang_tarball }}"
-  register: golang_tar
+    - name: "Check that the Go tar exists"
+      stat:
+        path: "{{ dev_cache_dir }}/{{ golang_tarball }}"
+      register: golang_tar
 
-- name: "Download the Go tarball"
-  get_url:
-    url: "{{ golang_download_location }}"
-    dest: "{{ dev_cache_dir }}"
-  when: not golang_tar.stat.exists
+    - name: "Download the Go tarball"
+      get_url:
+        url: "{{ golang_download_location }}"
+        dest: "{{ dev_cache_dir }}"
+      when: not golang_tar.stat.exists
 
-- name: "Extract the Go tarball"
-  become: yes
-  unarchive:
-    src: "{{ dev_cache_dir }}/{{ golang_tarball }}"
-    dest: "{{ golang_install_dir }}"
-    remote_src: yes
-    creates: "{{ golang_install_dir }}/go"
+    - name: "Extract the Go tarball"
+      become: yes
+      unarchive:
+        src: "{{ dev_cache_dir }}/{{ golang_tarball }}"
+        dest: "{{ golang_install_dir }}"
+        remote_src: yes
+        creates: "{{ golang_install_dir }}/go"
+  when: "go_bin_version.stdout != golang_version_string"
