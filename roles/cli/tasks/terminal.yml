@@ -1,7 +1,7 @@
 ---
 - name: "Ensure cache dir exists"
   file:
-    path: "{{ common_cache_dir }}"
+    path: "{{ cli_cache_dir }}"
     state: directory
 
 - name: "Retrieve latest wezterm version"
@@ -16,19 +16,19 @@
 
 - name: "Check that the wezterm tar exists"
   stat:
-    path: "{{ common_cache_dir }}/{{ wezterm_deb }}"
+    path: "{{ cli_cache_dir }}/{{ wezterm_deb }}"
   register: wezterm_deb_cache
 
 - name: "Download the wezterm deb"
   get_url:
     url: "{{ wezterm_download_location }}"
-    dest: "{{ common_cache_dir }}"
+    dest: "{{ cli_cache_dir }}"
   when: not wezterm_deb_cache.stat.exists
 
 - name: "Install wezterm package"
   become: yes
   ansible.builtin.apt:
-    deb: "{{ common_cache_dir }}/{{ wezterm_deb }}"
+    deb: "{{ cli_cache_dir }}/{{ wezterm_deb }}"
 
 - name: "Set wezterm dot file path"
   set_fact:

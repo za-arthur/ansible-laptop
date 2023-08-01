@@ -16,3 +16,9 @@
     - "dua"
     - "update_tools"
   import_tasks: "dua.yml"
+
+- name: "Import yq"
+  tags:
+    - "yq"
+    - "update_tools"
+  import_tasks: "yq.yml"
