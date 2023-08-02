@@ -1,6 +1,7 @@
 local wezterm = require 'wezterm'
 local config = {}
 local act = wezterm.action
+local icons = wezterm.nerdfonts
 
 --
 -- Appearance
@@ -54,6 +55,7 @@ config.keys = {
 }
 
 config.window_decorations = "RESIZE"
+config.show_new_tab_button_in_tab_bar = false
 
 --
 -- Handle events
@@ -95,5 +97,93 @@ wezterm.on('window-focus-changed', function(window, pane)
     end
   end
 end)
+
+-- Handle tab title
+local process_icons = {
+  ['docker'] = {
+    { Text = wezterm.nerdfonts.linux_docker },
+  },
+  ['docker-compose'] = {
+    { Text = wezterm.nerdfonts.linux_docker },
+  },
+  ['vim'] = {
+    { Text = wezterm.nerdfonts.dev_vim },
+  },
+  ['vim.basic'] = {
+    { Text = wezterm.nerdfonts.dev_vim },
+  },
+  ['hx'] = {
+    { Text = wezterm.nerdfonts.dev_visualstudio },
+  },
+  ['zsh'] = {
+    { Text = wezterm.nerdfonts.cod_terminal },
+  },
+  ['bash'] = {
+    { Text = wezterm.nerdfonts.cod_terminal_bash },
+  },
+  ['htop'] = {
+    { Text = wezterm.nerdfonts.mdi_chart_donut_variant },
+  },
+  ['go'] = {
+    { Text = wezterm.nerdfonts.mdi_language_go },
+  },
+  ['git'] = {
+    { Text = wezterm.nerdfonts.dev_git },
+  },
+  ['lazygit'] = {
+    { Text = wezterm.nerdfonts.dev_git_merge },
+  },
+  ['wget'] = {
+    { Text = wezterm.nerdfonts.mdi_arrow_down_box },
+  },
+  ['curl'] = {
+    { Text = wezterm.nerdfonts.mdi_flattr },
+  },
+}
+
+local function get_current_working_dir(tab)
+  local current_dir = tab.active_pane.current_working_dir
+  local HOME_DIR = string.format('file://%s', os.getenv('HOME'))
+
+  return current_dir == HOME_DIR and '.'
+      or string.gsub(current_dir, '(.*[/\\])(.*)', '%2')
+end
+
+local function get_process(tab)
+  local process_name = string.gsub(tab.active_pane.foreground_process_name, '(.*[/\\])(.*)', '%2')
+
+  return wezterm.format(
+    process_icons[process_name]
+    or { { Text = string.format('[%s]', process_name) } }
+  )
+end
+
+wezterm.on(
+  'format-tab-title',
+  function(tab, tabs, panes, config, hover, max_width)
+    local has_unseen_output = false
+    if not tab.is_active then
+      for _, pane in ipairs(tab.panes) do
+        if pane.has_unseen_output then
+          has_unseen_output = true
+          break
+        end
+      end
+    end
+
+    local title = string.format(' %s ~ %s  ', get_process(tab), get_current_working_dir(tab))
+
+    if has_unseen_output then
+      return {
+        { Foreground = { Color = 'Orange' } },
+        { Text = title },
+      }
+    end
+
+    return {
+      { Text = title },
+    }
+  end
+)
 
 return config
