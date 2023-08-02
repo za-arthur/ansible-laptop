@@ -1,7 +1,6 @@
 local wezterm = require 'wezterm'
 local config = {}
 local act = wezterm.action
-local icons = wezterm.nerdfonts
 
 --
 -- Appearance
@@ -139,6 +138,9 @@ local process_icons = {
   ['curl'] = {
     { Text = wezterm.nerdfonts.mdi_flattr },
   },
+  ['ssh'] = {
+    { Text = wezterm.nerdfonts.cod_remote },
+  },
 }
 
 local function get_current_working_dir(tab)
@@ -149,12 +151,10 @@ local function get_current_working_dir(tab)
       or string.gsub(current_dir, '(.*[/\\])(.*)', '%2')
 end
 
-local function get_process(tab)
-  local process_name = string.gsub(tab.active_pane.foreground_process_name, '(.*[/\\])(.*)', '%2')
-
+local function get_process_title(process_name)
   return wezterm.format(
     process_icons[process_name]
-    or { { Text = string.format('[%s]', process_name) } }
+    or { { Text = string.format('%s', process_name) } }
   )
 end
 
@@ -171,7 +171,14 @@ wezterm.on(
       end
     end
 
-    local title = string.format(' %s ~ %s  ', get_process(tab), get_current_working_dir(tab))
+    local process_name = string.gsub(tab.active_pane.foreground_process_name, '(.*[/\\])(.*)', '%2')
+    local title = ''
+    -- Show default title for ssh
+    if process_name == 'ssh' then
+      title = string.format(' %s  %s ', get_process_title(process_name), tab.active_pane.title)
+    else
+      title = string.format(' %s  %s ', get_process_title(process_name), get_current_working_dir(tab))
+    end
 
     if has_unseen_output then
       return {
