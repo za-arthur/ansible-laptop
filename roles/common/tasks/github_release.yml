@@ -1,0 +1,52 @@
+---
+- name: "Register the current {{ name }} version"
+  command: "{{ version_cmd }}"
+  register: "bin_version"
+  changed_when: false
+  ignore_errors: true
+
+- name: "Retrieve latest {{ name }} version"
+  uri:
+    url: "{{ latest_url }}"
+    return_content: true
+  register: latest_json
+
+- name: "Set latest {{ name }} version"
+  set_fact:
+    latest_version: "{{ latest_json.json['tag_name'] | regex_replace('^v','') }}"
+    latest_version_tag: "{{ latest_json.json['tag_name'] }}"
+
+- name: "Set latest {{ name }} version string"
+  set_fact:
+    latest_version_string: "{{ version_string | replace('VERSION_TAG', latest_version_tag) | replace('VERSION', latest_version) }}"
+
+- name: "Download and install {{ name }}"
+  block:
+    - name: "Ensure cache dir exists"
+      file:
+        path: "{{ cache_dir | default('/tmp/cacheansible') }}"
+        state: directory
+
+    - name: "Ensure·install·location·exists"
+      become: true
+      file:
+        path: "{{ bin_dir }}"
+        state: directory
+
+    - name: "Download the {{ name }} tarball"
+      get_url:
+        url: "{{ download_url }}"
+        dest: "{{ cache_dir | default('/tmp/cacheansible') }}"
+
+    - name: "Extract the {{ name }} tarball"
+      become: true
+      unarchive:
+        src: "{{ cache_dir | default('/tmp/cacheansible') }}/{{ tarball_name }}"
+        remote_src: yes
+        dest: "{{ bin_dir }}"
+        extra_opts:
+#          - "--add-file"
+#          - "{{ name }}"
+          - "--strip-components"
+          - "{{ tarball_strip | default(0) }}"
+  when: "bin_version.stdout is not match(latest_version_string)"

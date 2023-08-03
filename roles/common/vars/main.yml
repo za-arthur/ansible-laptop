@@ -1,2 +1,3 @@
 ---
 local_home: "{{ lookup('env','HOME') }}"
+common_cache_dir: "/tmp/cacheansible"

@@ -37,6 +37,7 @@ export PERLBREW_HOME="$HOME/perlbrew"
 # PATH
 PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 PATH="$HOME/.local/bin:$PATH"
+PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 
 for d in /usr/local/bin/*/; do
     PATH="$d:$PATH"

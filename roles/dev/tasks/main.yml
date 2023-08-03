@@ -5,6 +5,18 @@
     - "go"
     - "update_tools"
 
+- name: "Import helix"
+  import_tasks: "helix.yml"
+  tags:
+    - "helix"
+    - "update_tools"
+
+- name: "Import lsp"
+  import_tasks: "lsp.yml"
+  tags:
+    - "lsp"
+    - "update_tools"
+
 - name: "Import hugo"
   import_tasks: "hugo.yml"
   tags:

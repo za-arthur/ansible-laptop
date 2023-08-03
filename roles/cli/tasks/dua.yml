@@ -1,51 +1,14 @@
 ---
-- name: "Register the current dua version"
-  command: "{{ dua_install_location }}/dua --version"
-  register: "dua_bin_version"
-  changed_when: false
-  ignore_errors: yes
-
-- name: "Retrieve latest dua version"
-  uri:
-    url: "{{ dua_latest_url }}"
-    return_content: true
-  register: dua_latest
-
-- name: "Set latest dua version"
-  set_fact:
-    dua_version: "{{ dua_latest.json['tag_name'] | regex_replace('^v','') }}"
-
-- name: "Download and install dua"
-  block:
-    - name: "Ensure cache dir exists"
-      file:
-        path: "{{ cli_cache_dir }}"
-        state: directory
-
-    - name: "Check that the dua tar exists"
-      stat:
-        path: "{{ cli_cache_dir }}/{{ dua_tarball }}"
-      register: dua_tar
-
-    - name: "Download the dua tarball"
-      get_url:
-        url: "{{ dua_download_location }}"
-        dest: "{{ cli_cache_dir }}"
-      when: not dua_tar.stat.exists
-
-    - name: "Ensure install location exists"
-      become: yes
-      file:
-        path: "{{ dua_install_location }}"
-        state: directory
-
-    - name: "Extract the dua tarball"
-      become: yes
-      unarchive:
-        src: "{{ cli_cache_dir }}/{{ dua_tarball }}"
-        remote_src: yes
-        dest: "{{ dua_install_location }}"
-        extra_opts:
-          - "--strip-components"
-          - "1"
-  when: "dua_bin_version.stdout != dua_version_string"
+- name: "Install dua"
+  include_role:
+    name: "common"
+    tasks_from: "github_release"
+  vars:
+    name: "dua"
+    version_cmd: "/usr/local/bin/dua/dua --version"
+    version_string: "dua VERSION"
+    bin_dir: "/usr/local/bin/dua"
+    latest_url: "{{ dua_latest_url }}"
+    download_url: "{{ dua_download_location }}"
+    tarball_name: "{{ dua_tarball }}"
+    tarball_strip: 1
