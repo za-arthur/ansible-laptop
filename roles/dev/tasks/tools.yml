@@ -1,0 +1,8 @@
+---
+- name: "Install npm"
+  tags:
+    - "npm"
+  become: true
+  ansible.builtin.apt:
+    name: "npm"
+    state: latest

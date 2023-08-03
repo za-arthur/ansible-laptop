@@ -8,8 +8,3 @@
   tags:
     - "dotfiles"
   import_tasks: "dotfiles.yml"
-
-- name: "Import homebrew"
-  tags:
-    - "homebrew"
-  import_tasks: "homebrew.yml"

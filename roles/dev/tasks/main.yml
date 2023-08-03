@@ -5,6 +5,12 @@
     - "go"
     - "update_tools"
 
+- name: "Import tools"
+  import_tasks: "tools.yml"
+  tags:
+    - "dev_tools"
+    - "update_tools"
+
 - name: "Import helix"
   import_tasks: "helix.yml"
   tags:

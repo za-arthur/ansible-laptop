@@ -7,7 +7,7 @@
 
 - name: "Import CLI tools"
   tags:
-    - "tools"
+    - "cli_tools"
     - "update_tools"
   import_tasks: "tools.yml"
 
