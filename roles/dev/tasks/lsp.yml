@@ -1,1 +1,6 @@
 ---
+- name: "Install yaml language server"
+  command: "brew install yaml-language-server"
+
+- name: "Install marksman language server"
+  command: "brew install marksman"
