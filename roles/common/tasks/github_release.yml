@@ -33,20 +33,35 @@
         path: "{{ bin_dir }}"
         state: directory
 
-    - name: "Download the {{ name }} tarball"
+    - name: "Download the {{ name }} release"
       get_url:
         url: "{{ download_url }}"
         dest: "{{ cache_dir | default('/tmp/cacheansible') }}"
 
-    - name: "Extract the {{ name }} tarball"
-      become: true
-      unarchive:
-        src: "{{ cache_dir | default('/tmp/cacheansible') }}/{{ tarball_name }}"
-        remote_src: yes
-        dest: "{{ bin_dir }}"
-        extra_opts:
-#          - "--add-file"
-#          - "{{ name }}"
-          - "--strip-components"
-          - "{{ tarball_strip | default(0) }}"
+    - block:
+      - name: "Extract the {{ name }} tarball"
+        become: true
+        unarchive:
+          src: "{{ cache_dir | default('/tmp/cacheansible') }}/{{ tarball_name }}"
+          remote_src: yes
+          dest: "{{ bin_dir }}"
+          extra_opts: >-
+            {{ tarball_strip is defined | ternary(["--strip-components", tarball_strip], []) +
+              tarball_add_file is defined | ternary(["--add-file", tarball_add_file], []) }}
+
+      - name: "Give execution permissions to the {{ name }} binary"
+        become: true
+        file:
+          path: "{{ bin_dir }}/{{ name }}"
+          mode: "a+x"
+      when: "tarball_name is defined"
+
+    - block:
+      - name: "Copy the {{ name }} binary"
+        become: true
+        copy:
+          src: "{{ cache_dir | default('/tmp/cacheansible') }}/{{ release_bin_name }}"
+          dest: "{{ bin_dir }}/{{ name }}"
+          mode: "a+x"
+      when: "release_bin_name is defined"
   when: "bin_version.stdout is not match(latest_version_string)"

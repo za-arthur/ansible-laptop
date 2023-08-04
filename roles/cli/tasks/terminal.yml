@@ -3,7 +3,7 @@
   command: "/usr/bin/wezterm --version"
   register: "wezterm_bin_version"
   changed_when: false
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: "Retrieve latest wezterm version"
   uri:
@@ -34,7 +34,7 @@
       when: not wezterm_deb_cache.stat.exists
 
     - name: "Install wezterm package"
-      become: yes
+      become: true
       ansible.builtin.apt:
         deb: "{{ cli_cache_dir }}/{{ wezterm_deb }}"
 
@@ -50,7 +50,7 @@
         dotfile_path: "{{ wezterm_dotfile }}"
 
     - name: "Select wezterm as default terminal"
-      become: yes
+      become: true
       community.general.alternatives:
         link: "/usr/bin/x-terminal-emulator"
         name: "x-terminal-emulator"

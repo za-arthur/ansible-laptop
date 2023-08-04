@@ -2,7 +2,38 @@
 - name: "Install lsd (ls command)"
   tags:
     - "lsd-ls"
-  become: yes
+  become: true
   ansible.builtin.apt:
     name: "lsd"
     state: latest
+
+- name: "Install dua"
+  tags:
+    - "dua"
+  include_role:
+    name: "common"
+    tasks_from: "github_release"
+  vars:
+    name: "dua"
+    version_cmd: "/usr/local/bin/dua/dua --version"
+    version_string: "dua VERSION"
+    bin_dir: "/usr/local/bin/dua"
+    latest_url: "{{ dua_latest_url }}"
+    download_url: "{{ dua_download_location }}"
+    tarball_name: "{{ dua_tarball }}"
+    tarball_strip: 1
+
+- name: "Install yq"
+  tags:
+    - "yq"
+  include_role:
+    name: "common"
+    tasks_from: "github_release"
+  vars:
+    name: "yq"
+    version_cmd: "/usr/local/bin/yq --version"
+    version_string: ".*version VERSION_TAG"
+    bin_dir: "/usr/local/bin/"
+    latest_url: "{{ yq_latest_url }}"
+    download_url: "{{ yq_download_location }}"
+    release_bin_name: "{{ yq_release_bin_name }}"

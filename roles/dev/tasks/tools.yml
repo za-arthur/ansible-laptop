@@ -6,3 +6,51 @@
   ansible.builtin.apt:
     name: "npm"
     state: latest
+
+- name: "Install hugo"
+  tags:
+    - "hugo"
+  include_role:
+    name: "common"
+    tasks_from: "github_release"
+  vars:
+    name: "hugo"
+    version_cmd: "/usr/local/bin/hugo version"
+    version_string: "hugo VERSION_TAG.*"
+    bin_dir: "/usr/local/bin"
+    latest_url: "{{ hugo_latest_url }}"
+    download_url: "{{ hugo_download_location }}"
+    tarball_name: "{{ hugo_tarball }}"
+    tarball_add_file: "hugo"
+
+- name: "Install lazygit"
+  tags:
+    - "lazygit"
+  include_role:
+    name: "common"
+    tasks_from: "github_release"
+  vars:
+    name: "lazygit"
+    version_cmd: "/usr/local/bin/lazygit --version"
+    version_string: ".*version=VERSION"
+    bin_dir: "/usr/local/bin"
+    latest_url: "{{ lazygit_latest_url }}"
+    download_url: "{{ lazygit_download_location }}"
+    tarball_name: "{{ lazygit_tarball }}"
+    tarball_add_file: "lazygit"
+
+- name: "Install act"
+  tags:
+    - "act"
+  include_role:
+    name: "common"
+    tasks_from: "github_release"
+  vars:
+    name: "act"
+    version_cmd: "/usr/local/bin/act --version"
+    version_string: "act version VERSION"
+    bin_dir: "/usr/local/bin"
+    latest_url: "{{ act_latest_url }}"
+    download_url: "{{ act_download_location }}"
+    tarball_name: "{{ act_tarball }}"
+    tarball_add_file: "act"

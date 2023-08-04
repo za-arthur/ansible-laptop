@@ -10,15 +10,3 @@
     - "cli_tools"
     - "update_tools"
   import_tasks: "tools.yml"
-
-- name: "Import dua"
-  tags:
-    - "dua"
-    - "update_tools"
-  import_tasks: "dua.yml"
-
-- name: "Import yq"
-  tags:
-    - "yq"
-    - "update_tools"
-  import_tasks: "yq.yml"
