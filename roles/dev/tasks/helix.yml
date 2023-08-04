@@ -17,20 +17,20 @@
         update_cache: yes
         name: "helix"
         state: latest
+
+    - name: "Create helix configuration directory"
+      file:
+        path: "{{ local_home }}/.config/helix"
+        state: directory
+
+    - name: "Create helix configuration files"
+      include_role:
+        name: "common"
+        tasks_from: "dotfiles_create"
+      vars:
+        dst_directory: "{{ local_home }}/.config/helix"
+        dst_prefix: ""
+      with_fileglob: "{{ role_path }}/files/helix/*"
+      loop_control:
+        loop_var: dotfile_path
   when: "'helix' not in ansible_facts.packages"
-
-- name: "Create helix configuration directory"
-  file:
-    path: "{{ local_home }}/.config/helix"
-    state: directory
-
-- name: "Create helix configuration files"
-  include_role:
-    name: "common"
-    tasks_from: "dotfiles_create"
-  vars:
-    dst_directory: "{{ local_home }}/.config/helix"
-    dst_prefix: ""
-  with_fileglob: "{{ role_path }}/files/helix/*"
-  loop_control:
-    loop_var: dotfile_path
