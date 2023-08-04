@@ -1,5 +1,6 @@
 ---
 dev_cache_dir: /tmp/cacheansible
+local_home: "{{ lookup('env','HOME') }}"
 
 # Go
 golang_version: "1.20.3"
@@ -7,7 +8,7 @@ golang_tarball_repo: "https://go.dev/dl"
 golang_tarball: "go{{ golang_version }}.linux-amd64.tar.gz"
 golang_download_location: "{{ golang_tarball_repo }}/{{ golang_tarball }}"
 
-golang_gopath: "{{ lookup('env','HOME') }}/go"
+golang_gopath: "{{ local_home }}/go"
 golang_install_dir: "/usr/local"
 golang_env:
   GOPATH: "{{ golang_gopath }}"

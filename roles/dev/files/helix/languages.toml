@@ -1,0 +1,7 @@
+[[language]]
+name = "diff"
+file-types = ["diff", "diffs"]
+
+[[grammar]]
+name = "perl"
+source = { git = "https://github.com/ganezdragon/tree-sitter-perl", rev = "bbf86084d9b7eb4768f3fb9fe094b3e0600057b1" }
