@@ -1,9 +1,4 @@
 ---
-- name: "Import fonts"
-  tags:
-    - "fonts"
-  import_tasks: "fonts.yml"
-
 - name: "Import dotfiles"
   tags:
     - "dotfiles"
