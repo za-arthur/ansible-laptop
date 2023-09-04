@@ -24,32 +24,32 @@ config.keys = {
   {
     key = 'r',
     mods = 'CTRL|ALT',
-    action = act.SplitHorizontal {domain = "CurrentPaneDomain"},
+    action = act.SplitHorizontal { domain = "CurrentPaneDomain" },
   },
   {
     key = 'd',
     mods = 'CTRL|ALT',
-    action = act.SplitVertical {domain = "CurrentPaneDomain"},
+    action = act.SplitVertical { domain = "CurrentPaneDomain" },
   },
   {
     key = 'LeftArrow',
     mods = 'SHIFT|ALT',
-    action = act.AdjustPaneSize {"Left", 1},
+    action = act.AdjustPaneSize { "Left", 1 },
   },
   {
     key = 'RightArrow',
     mods = 'SHIFT|ALT',
-    action = act.AdjustPaneSize {"Right", 1},
+    action = act.AdjustPaneSize { "Right", 1 },
   },
   {
     key = 'UpArrow',
     mods = 'SHIFT|ALT',
-    action = act.AdjustPaneSize {"Up", 1},
+    action = act.AdjustPaneSize { "Up", 1 },
   },
   {
     key = 'DownArrow',
     mods = 'SHIFT|ALT',
-    action = act.AdjustPaneSize {"Down", 1},
+    action = act.AdjustPaneSize { "Down", 1 },
   },
 }
 
@@ -114,6 +114,9 @@ local process_icons = {
   ['hx'] = {
     { Text = wezterm.nerdfonts.dev_visualstudio },
   },
+  ['nvim'] = {
+    { Text = wezterm.nerdfonts.dev_vim },
+  },
   ['zsh'] = {
     { Text = wezterm.nerdfonts.cod_terminal },
   },
@@ -160,7 +163,7 @@ end
 
 wezterm.on(
   'format-tab-title',
-  function(tab, tabs, panes, config, hover, max_width)
+  function(tab, _, _, _, _, _)
     local has_unseen_output = false
     if not tab.is_active then
       for _, pane in ipairs(tab.panes) do

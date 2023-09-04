@@ -5,6 +5,12 @@
     - "update_tools"
   import_tasks: "terminal.yml"
 
+- name: "Import nerd_font"
+  tags:
+    - "nerd_font"
+    - "update_tools"
+  import_tasks: "nerd_font.yml"
+
 - name: "Import CLI tools"
   tags:
     - "cli_tools"

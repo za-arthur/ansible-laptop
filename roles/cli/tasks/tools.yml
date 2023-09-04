@@ -37,3 +37,22 @@
     latest_url: "{{ yq_latest_url }}"
     download_url: "{{ yq_download_location }}"
     release_bin_name: "{{ yq_release_bin_name }}"
+
+- name: "Install ripgrep"
+  become: true
+  ansible.builtin.apt:
+    name: "ripgrep"
+    state: latest
+
+- name: "Install fdfind"
+  become: true
+  ansible.builtin.apt:
+    name: "fd-find"
+    state: latest
+
+- name: "Create symlink fd"
+  file:
+    src: "/usr/bin/fdfind"
+    dest: "{{ local_home }}/.local/bin/fd"
+    state: link
+
