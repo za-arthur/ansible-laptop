@@ -1,12 +1,4 @@
 ---
-- name: "Install npm"
-  tags:
-    - "npm"
-  become: true
-  ansible.builtin.apt:
-    name: "npm"
-    state: latest
-
 - name: "Install hugo"
   tags:
     - "hugo"
@@ -54,3 +46,10 @@
     download_url: "{{ act_download_location }}"
     tarball_name: "{{ act_tarball }}"
     tarball_add_file: "act"
+
+- name: "Install bear"
+  tags:
+    - "bear"
+  ansible.builtin.apt:
+    name: "bear"
+    state: latest

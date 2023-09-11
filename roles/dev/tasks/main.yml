@@ -5,20 +5,15 @@
     - "go"
     - "update_tools"
 
+- name: "Import nvim"
+  import_tasks: "nvim.yml"
+  tags:
+    - "nvim"
+    - "update_tools"
+
 - name: "Import tools"
   import_tasks: "tools.yml"
   tags:
     - "dev_tools"
     - "update_tools"
 
-- name: "Import helix"
-  import_tasks: "helix.yml"
-  tags:
-    - "helix"
-    - "update_tools"
-
-- name: "Import lsp"
-  import_tasks: "lsp.yml"
-  tags:
-    - "lsp"
-    - "update_tools"

@@ -1,0 +1,31 @@
+---
+- name: "Ensure cache dir exists"
+  file:
+    path: "{{ dev_cache_dir }}"
+    state: directory
+
+- name: "Download the neovim release"
+  get_url:
+    url: "{{ nvim_download_location }}"
+    dest: "{{ dev_cache_dir }}"
+
+- name: "Extract the neovim tarball"
+  become: true
+  unarchive:
+    src: "{{ dev_cache_dir }}/{{ nvim_tarball }}"
+    dest: "/usr/local"
+    extra_opts:
+      - "--strip-components"
+      - 1
+
+- name: "Clone the nvim config repository"
+  ansible.builtin.git:
+    repo: "{{ nvim_config_repo }}"
+    dest: "{{ local_home }}/sources/nvim"
+    version: "main"
+
+- name: "Create a symlink to the nvim config directory"
+  file:
+    src: "{{ local_home }}/sources/nvim"
+    dest: "{{ local_home }}/.local/nvim"
+    state: link
