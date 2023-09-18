@@ -50,6 +50,15 @@
 - name: "Install bear"
   tags:
     - "bear"
+  become: true
   ansible.builtin.apt:
     name: "bear"
+    state: latest
+
+- name: "Install pgformatter"
+  tags:
+    - "pgformatter"
+  become: true
+  ansible.builtin.apt:
+    name: "pgformatter"
     state: latest
