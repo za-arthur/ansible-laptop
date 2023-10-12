@@ -15,21 +15,21 @@
     tarball_name: "{{ hugo_tarball }}"
     tarball_add_file: "hugo"
 
-- name: "Install lazygit"
+- name: "Install gitui"
   tags:
-    - "lazygit"
+    - "gitui"
   include_role:
     name: "common"
     tasks_from: "github_release"
   vars:
-    name: "lazygit"
-    version_cmd: "/usr/local/bin/lazygit --version"
-    version_string: ".*version=VERSION"
+    name: "gitui"
+    version_cmd: "/usr/local/bin/gitui --version"
+    version_string: "gitui VERSION"
     bin_dir: "/usr/local/bin"
-    latest_url: "{{ lazygit_latest_url }}"
-    download_url: "{{ lazygit_download_location }}"
-    tarball_name: "{{ lazygit_tarball }}"
-    tarball_add_file: "lazygit"
+    latest_url: "{{ gitui_latest_url }}"
+    download_url: "{{ gitui_download_location }}"
+    tarball_name: "{{ gitui_tarball }}"
+    tarball_strip: 1
 
 - name: "Install act"
   tags:

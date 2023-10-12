@@ -27,11 +27,11 @@ hugo_tarball_url: "https://github.com/gohugoio/hugo/releases/download"
 hugo_tarball: "hugo_{{ latest_version }}_Linux-64bit.tar.gz"
 hugo_download_location: "{{ hugo_tarball_url }}/{{ latest_version_tag }}/{{ hugo_tarball }}"
 
-# Lazygit
-lazygit_latest_url: "https://api.github.com/repos/jesseduffield/lazygit/releases/latest"
-lazygit_tarball_url: "https://github.com/jesseduffield/lazygit/releases/download"
-lazygit_tarball: "lazygit_{{ latest_version }}_Linux_x86_64.tar.gz"
-lazygit_download_location: "{{ lazygit_tarball_url }}/{{ latest_version_tag }}/{{ lazygit_tarball }}"
+# gitui
+gitui_latest_url: "https://api.github.com/repos/extrawurst/gitui/releases/latest"
+gitui_tarball_url: "https://github.com/extrawurst/gitui/releases/download"
+gitui_tarball: "gitui-linux-musl.tar.gz"
+gitui_download_location: "{{ gitui_tarball_url }}/{{ latest_version_tag }}/{{ gitui_tarball }}"
 
 # Act
 act_latest_url: "https://api.github.com/repos/nektos/act/releases/latest"
