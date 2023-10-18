@@ -36,6 +36,7 @@ export PERLBREW_HOME="$HOME/perlbrew"
 
 # PATH
 PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
+PATH="$HOME/.cargo/bin:$PATH"
 PATH="$HOME/.local/bin:$PATH"
 
 for d in /usr/local/bin/*/; do
