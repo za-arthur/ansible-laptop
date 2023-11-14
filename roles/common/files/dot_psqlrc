@@ -5,8 +5,6 @@
 \timing
 \set PROMPT1 'pid:%[%033[1;44;1m%]%p%[%033[0m%] %M:%> %n@%/%R%x%# '
 \set PROMPT2 ' '
-\set COMP_KEYWORD_CASE upper
 
 \set x '\\setenv PAGER less'
 \set xx '\\setenv PAGER \'pspg -bX --no-mouse\''
-:xx
