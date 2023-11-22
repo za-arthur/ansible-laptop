@@ -9,6 +9,11 @@
     url: "{{ nerd_font_url }}"
     dest: "{{ cli_cache_dir }}"
 
+- name: "Ensure fonts dir exists"
+  file:
+    path: "{{ local_home }}/.local/share/fonts"
+    state: directory
+
 - name: "Extract JetBrainsMono tarball"
   unarchive:
     src: "{{ cli_cache_dir }}/{{ nerd_font_tarball }}"
@@ -20,4 +25,9 @@
 
 - name: "Set JetBrainsMono font"
   ansible.builtin.command: "gsettings set org.gnome.desktop.interface monospace-font-name \"JetBrainsMono Nerd Font 13\""
+  when: ansible_distribution == "Ubuntu"
+
+- name: "Set JetBrainsMono font"
+  ansible.builtin.command: "gsettings set org.gnome.desktop.interface monospace-font-name \"JetBrainsMono NF 13\""
+  when: ansible_distribution == "Pop!_OS"
 

@@ -6,6 +6,7 @@
   ansible.builtin.apt:
     name: "lsd"
     state: latest
+  when: ansible_distribution == "Ubuntu"
 
 - name: "Install dua"
   tags:
