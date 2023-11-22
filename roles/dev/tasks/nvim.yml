@@ -27,5 +27,5 @@
 - name: "Create a symlink to the nvim config directory"
   file:
     src: "{{ local_home }}/sources/nvim"
-    dest: "{{ local_home }}/.local/nvim"
+    dest: "{{ local_home }}/.config/nvim"
     state: link
