@@ -24,10 +24,5 @@
   ansible.builtin.command: "fc-cache -v -f"
 
 - name: "Set JetBrainsMono font"
-  ansible.builtin.command: "gsettings set org.gnome.desktop.interface monospace-font-name \"JetBrainsMono Nerd Font 13\""
-  when: ansible_distribution == "Ubuntu"
-
-- name: "Set JetBrainsMono font"
   ansible.builtin.command: "gsettings set org.gnome.desktop.interface monospace-font-name \"JetBrainsMono NF 13\""
-  when: ansible_distribution == "Pop!_OS"
 
