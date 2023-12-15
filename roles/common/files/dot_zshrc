@@ -77,3 +77,18 @@ if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
 fi
 
 alias ls="lsd"
+
+# Go
+export GOROOT="/usr/local/go"
+export GOPATH="$HOME/go"
+
+# PATH
+PATH="$GOROOT/bin:$PATH"
+PATH="$HOME/.cargo/bin:$PATH"
+PATH="$HOME/.local/bin:$PATH"
+
+for d in /usr/local/bin/*/; do
+    PATH="$d:$PATH"
+done
+
+export PATH

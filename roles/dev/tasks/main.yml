@@ -5,6 +5,12 @@
     - "go"
     - "update_tools"
 
+- name: "Import rust"
+  import_tasks: "rust.yml"
+  tags:
+    - "rust"
+    - "update_tools"
+
 - name: "Import nvim"
   import_tasks: "nvim.yml"
   tags:
