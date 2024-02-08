@@ -3,3 +3,8 @@
   tags:
     - "dotfiles"
   import_tasks: "dotfiles.yml"
+
+- name: "Import obsidian"
+  tags:
+    - "obsidian"
+  import_tasks: "obsidian.yml"
