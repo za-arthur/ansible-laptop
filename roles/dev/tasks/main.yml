@@ -17,6 +17,12 @@
     - "nvim"
     - "update_tools"
 
+- name: "Import pgenv"
+  import_tasks: "pgenv.yml"
+  tags:
+    - "pgenv"
+    - "update_tools"
+
 - name: "Import tools"
   import_tasks: "tools.yml"
   tags:

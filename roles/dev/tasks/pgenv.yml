@@ -1,0 +1,5 @@
+---
+- name: "Checkout pgenv"
+  ansible.builtin.git:
+    repo: "git@github.com:theory/pgenv.git"
+    dest: "{{ local_home }}/.pgenv"

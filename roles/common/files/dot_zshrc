@@ -59,24 +59,15 @@ pack () {
   fi
 }
 
-# PostgreSQL paths
-function initpg {
-    PATH="$HOME/progs/pgsql/bin:$PATH"
-    export PATH
-        PG_CONFIG="$HOME/progs/pgsql/bin/pg_config"
-        export PG_CONFIG
-    LD_LIBRARY_PATH="$HOME/progs/pgsql/lib:$LD_LIBRARY_PATH"
-    export LD_LIBRARY_PATH
-    PGDATA="$HOME/progs/pgsql/data"
-    export PGDATA
-}
-
 # Fix the gnome-terminal bug
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
   source /etc/profile.d/vte.sh
 fi
 
 alias ls="lsd"
+
+# PostgreSQL
+PATH="$HOME/.pgenv/bin:$HOME/.pgenv/pgsql/bin:$PATH"
 
 # Go
 export GOROOT="/usr/local/go"
