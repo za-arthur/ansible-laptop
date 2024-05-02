@@ -3,29 +3,24 @@
   import_tasks: "go.yml"
   tags:
     - "go"
-    - "update_tools"
 
 - name: "Import rust"
   import_tasks: "rust.yml"
   tags:
     - "rust"
-    - "update_tools"
 
 - name: "Import nvim"
   import_tasks: "nvim.yml"
   tags:
     - "nvim"
-    - "update_tools"
 
 - name: "Import pgenv"
   import_tasks: "pgenv.yml"
   tags:
     - "pgenv"
-    - "update_tools"
 
 - name: "Import tools"
   import_tasks: "tools.yml"
   tags:
     - "dev_tools"
-    - "update_tools"
 
