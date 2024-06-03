@@ -45,6 +45,8 @@
           src: "{{ cache_dir | default('/tmp/cacheansible') }}/{{ tarball_name }}"
           remote_src: yes
           dest: "{{ bin_dir }}"
+          owner: "root"
+          group: "root"
           extra_opts: >-
             {{ tarball_strip is defined | ternary(["--strip-components", tarball_strip], []) +
               tarball_add_file is defined | ternary(["--add-file", tarball_add_file], []) }}

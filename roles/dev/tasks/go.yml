@@ -34,5 +34,7 @@
         src: "{{ dev_cache_dir }}/{{ golang_tarball }}"
         dest: "{{ golang_install_dir }}"
         remote_src: yes
+        owner: "root"
+        group: "root"
         creates: "{{ golang_install_dir }}/go"
   when: "go_bin_version.stdout != golang_version_string"
