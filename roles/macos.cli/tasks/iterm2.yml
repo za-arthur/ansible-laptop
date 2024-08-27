@@ -6,7 +6,7 @@
 
 - name: "Check that iTerm2 is installed"
   ansible.builtin.stat:
-    path: "{{ local_home }}/Applications/iTerm2.app"
+    path: "{{ local_home }}/Applications/iTerm.app"
   register: iterm2_app
 
 - name: "Install iTerm2"

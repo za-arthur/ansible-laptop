@@ -1,7 +1,7 @@
 ---
 - name: "Ensure cache dir exists"
   file:
-    path: "{{ dev_cache_dir }}"
+    path: "{{ common_cache_dir }}"
     state: directory
 
 - name: "Ensure that GOPATH exists"

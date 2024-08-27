@@ -11,3 +11,5 @@
 
 - name: "Run Oh My Zsh installation script"
   command: "/bin/bash {{ common_cache_dir }}/install_ohmyzsh.sh"
+  register: ohmyzsh_result
+  failed_when: "'FAILED' in ohmyzsh_result.stderr"

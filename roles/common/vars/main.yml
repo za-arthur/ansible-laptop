@@ -1,7 +1,4 @@
 ---
-local_home: "{{ lookup('env','HOME') }}"
-common_cache_dir: /tmp/cacheansible
-
 # obsidian
 obsidian_latest_url: "https://api.github.com/repos/obsidianmd/obsidian-releases/releases/latest"
 obsidian_deb_url: "https://github.com/obsidianmd/obsidian-releases/releases/download"

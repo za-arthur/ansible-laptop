@@ -1,7 +1,4 @@
 ---
-cli_cache_dir: /tmp/cacheansible
-local_home: "{{ lookup('env','HOME') }}"
-
 # dua
 dua_latest_url: "https://api.github.com/repos/Byron/dua-cli/releases/latest"
 dua_tarball_url: "https://github.com/Byron/dua-cli/releases/download"

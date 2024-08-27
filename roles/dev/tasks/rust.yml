@@ -1,7 +1,7 @@
 ---
 - name: "Ensure cache dir exists"
   file:
-    path: "{{ dev_cache_dir }}"
+    path: "{{ common_cache_dir }}"
     state: directory
 
 - name: "Check if cargo is installed"
@@ -12,10 +12,10 @@
 - name: "Download rustup"
   get_url:
     url: "https://sh.rustup.rs"
-    dest: "{{ dev_cache_dir }}/sh.rustup.rs"
+    dest: "{{ common_cache_dir }}/sh.rustup.rs"
     mode: "0755"
   when: cargo_exists is failed
 
 - name: "Install rust/cargo"
-  shell: "{{ dev_cache_dir }}/sh.rustup.rs -y"
+  shell: "{{ common_cache_dir }}/sh.rustup.rs -y"
   when: cargo_exists is failed

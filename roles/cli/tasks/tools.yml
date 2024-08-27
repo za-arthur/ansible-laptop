@@ -12,8 +12,7 @@
   tags:
     - "dua"
   include_role:
-    name: "common"
-    tasks_from: "github_release"
+    name: "github_release"
   vars:
     name: "dua"
     version_cmd: "/usr/local/bin/dua/dua --version"
@@ -28,8 +27,7 @@
   tags:
     - "yq"
   include_role:
-    name: "common"
-    tasks_from: "github_release"
+    name: "github_release"
   vars:
     name: "yq"
     version_cmd: "/usr/local/bin/yq --version"

@@ -1,7 +1,4 @@
 ---
-dev_cache_dir: /tmp/cacheansible
-local_home: "{{ lookup('env','HOME') }}"
-
 # Go
 golang_version: "1.21.5"
 golang_tarball_repo: "https://go.dev/dl"

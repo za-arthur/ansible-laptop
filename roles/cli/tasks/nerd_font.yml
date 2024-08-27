@@ -1,13 +1,13 @@
 ---
 - name: "Ensure cache dir exists"
   file:
-    path: "{{ cli_cache_dir }}"
+    path: "{{ common_cache_dir }}"
     state: directory
 
 - name: "Download latest JetBrainsMono release"
   get_url:
     url: "{{ nerd_font_url }}"
-    dest: "{{ cli_cache_dir }}"
+    dest: "{{ common_cache_dir }}"
 
 - name: "Ensure fonts dir exists"
   file:
@@ -16,7 +16,7 @@
 
 - name: "Extract JetBrainsMono tarball"
   unarchive:
-    src: "{{ cli_cache_dir }}/{{ nerd_font_tarball }}"
+    src: "{{ common_cache_dir }}/{{ nerd_font_tarball }}"
     dest: "{{ local_home }}/.local/share/fonts"
 
 - name: "Rebuild fonts cache"

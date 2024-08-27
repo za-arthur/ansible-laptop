@@ -3,8 +3,7 @@
   tags:
     - "hugo"
   include_role:
-    name: "common"
-    tasks_from: "github_release"
+    name: "github_release"
   vars:
     name: "hugo"
     version_cmd: "/usr/local/bin/hugo version"
@@ -19,8 +18,7 @@
   tags:
     - "gitui"
   include_role:
-    name: "common"
-    tasks_from: "github_release"
+    name: "github_release"
   vars:
     name: "gitui"
     version_cmd: "/usr/local/bin/gitui --version"
@@ -35,8 +33,7 @@
   tags:
     - "act"
   include_role:
-    name: "common"
-    tasks_from: "github_release"
+    name: "github_release"
   vars:
     name: "act"
     version_cmd: "/usr/local/bin/act --version"
