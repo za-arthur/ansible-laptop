@@ -2,4 +2,3 @@
 local_home: "{{ lookup('env','HOME') }}"
 common_cache_dir: /tmp/cacheansible
 
-golang_version: "1.23.0"

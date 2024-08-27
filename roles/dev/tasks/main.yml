@@ -1,4 +1,14 @@
 ---
+- name: "Load a variable file based on the OS"
+  ansible.builtin.include_vars: "{{ lookup('ansible.builtin.first_found', params) }}"
+  vars:
+    params:
+      files:
+        - "{{ ansible_distribution }}.yml"
+        - "{{ ansible_os_family }}.yml"
+      paths:
+        - 'vars'
+
 - name: "Import go"
   import_tasks: "go.yml"
   tags:

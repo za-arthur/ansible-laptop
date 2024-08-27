@@ -7,17 +7,17 @@ Install packages and configure a laptop using Ansible
 List available tasks:
 
 ```
-ansible-playbook laptop.yml --list-tasks
+ansible-playbook ubuntu_laptop.yml --list-tasks
 ```
 
 Run tasks:
 
 ```
-ansible-playbook laptop.yml -K
+ansible-playbook ubuntu_laptop.yml -K
 ```
 
 Run tasks by tags:
 
 ```
-ansible-playbook laptop.yml -K --tags "common,editors"
+ansible-playbook ubuntu_laptop.yml -K --tags "common,editors"
 ```

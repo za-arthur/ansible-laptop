@@ -1,5 +1,7 @@
 ---
 # Go
+golang_version: "1.23.0"
+
 golang_tarball_repo: "https://go.dev/dl"
 golang_download_location: "{{ golang_tarball_repo }}/{{ golang_tarball }}"
 
@@ -12,7 +14,7 @@ golang_env:
 golang_version_string: "go version go{{ golang_version }} linux/amd64"
 
 # Neovim
-nvim_download_location: "https://github.com/neovim/neovim/releases/download/stable/{{ nvim-linux64.tar.gz }}"
+nvim_download_location: "https://github.com/neovim/neovim/releases/download/stable/{{ nvim_tarball }}"
 nvim_config_repo: "git@github.com:za-arthur/nvim.git"
 
 # gitui
