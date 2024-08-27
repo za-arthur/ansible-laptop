@@ -1,4 +1,9 @@
 ---
+- name: "Ensure Applications dir exists"
+  ansible.builtin.file:
+    path: "{{ local_home }}/Applications"
+    state: directory
+
 - name: "Check that iTerm2 is installed"
   ansible.builtin.stat:
     path: "{{ local_home }}/Applications/iTerm2.app"
@@ -9,11 +14,6 @@
     - name: "Ensure cache dir exists"
       ansible.builtin.file:
         path: "{{ common_cache_dir }}"
-        state: directory
-
-    - name: "Ensure Applications dir exists"
-      ansible.builtin.file:
-        path: "{{ local_home }}/Applications"
         state: directory
 
     - name: "Download iTerm2"
