@@ -1,0 +1,13 @@
+---
+- name: "Ensure cache dir exists"
+  ansible.builtin.file:
+    path: "{{ common_cache_dir }}"
+    state: directory
+
+- name: "Download Oh My Zsh installation script"
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+    dest: "{{ common_cache_dir }}/install_ohmyzsh.sh"
+
+- name: "Run Oh My Zsh installation script"
+  command: "/bin/bash {{ common_cache_dir }}/install_ohmyzsh.sh"

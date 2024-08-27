@@ -3,3 +3,8 @@
   tags:
     - "iterm2"
   import_tasks: "iterm2.yml"
+
+- name: "Import Oh My Zsh"
+  tags:
+    - "oh_my_zsh"
+  import_tasks: "oh_my_zsh.yml"
