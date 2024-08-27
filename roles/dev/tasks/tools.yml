@@ -1,22 +1,5 @@
 ---
-- name: "Install hugo"
-  tags:
-    - "hugo"
-  include_role:
-    name: "github_release"
-  vars:
-    name: "hugo"
-    version_cmd: "/usr/local/bin/hugo version"
-    version_string: "hugo VERSION_TAG.*"
-    bin_dir: "/usr/local/bin"
-    latest_url: "{{ hugo_latest_url }}"
-    download_url: "{{ hugo_download_location }}"
-    tarball_name: "{{ hugo_tarball }}"
-    tarball_add_file: "hugo"
-
 - name: "Install gitui"
-  tags:
-    - "gitui"
   include_role:
     name: "github_release"
   vars:
@@ -30,8 +13,6 @@
     tarball_strip: 1
 
 - name: "Install act"
-  tags:
-    - "act"
   include_role:
     name: "github_release"
   vars:
@@ -44,18 +25,3 @@
     tarball_name: "{{ act_tarball }}"
     tarball_add_file: "act"
 
-- name: "Install bear"
-  tags:
-    - "bear"
-  become: true
-  ansible.builtin.apt:
-    name: "bear"
-    state: latest
-
-- name: "Install pgformatter"
-  tags:
-    - "pgformatter"
-  become: true
-  ansible.builtin.apt:
-    name: "pgformatter"
-    state: latest

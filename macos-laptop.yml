@@ -1,10 +1,13 @@
 ---
 - name: "Ansible Playbook to setup a new macOS laptop"
-  hosts: "laptop"
+  hosts: "macos-laptop"
   roles:
     - role: "macos.cli"
       tags:
         - "cli"
     - role: "dev"
+      tags:
+        - "dev"
+    - role: "macos.dev"
       tags:
         - "dev"

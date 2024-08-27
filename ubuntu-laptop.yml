@@ -1,11 +1,14 @@
 ---
 - name: "Ansible Playbook to setup a new Ubuntu laptop"
-  hosts: "laptop"
+  hosts: "macos-laptop"
   roles:
     - role: "common"
       tags:
         - "common"
     - role: "dev"
+      tags:
+        - "dev"
+    - role: "ubuntu.dev"
       tags:
         - "dev"
     - role: "cli"

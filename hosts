@@ -1,4 +1,11 @@
-laptop:
+ubuntu-laptop:
+  hosts:
+    localhost:
+  vars:
+    ansible_connection: local
+    ansible_python_interpreter: "{{ ansible_playbook_python }}"
+
+macos-laptop:
   hosts:
     localhost:
   vars:

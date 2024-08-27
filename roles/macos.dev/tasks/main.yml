@@ -1,0 +1,16 @@
+---
+- name: "Update Homebrew"
+  community.general.homebrew:
+    update_homebrew: true
+
+- name: "Install bear"
+  become: true
+  community.general.homebrew:
+    name: "bear"
+    state: latest
+
+- name: "Install pgformatter"
+  become: true
+  community.general.homebrew:
+    name: "pgformatter"
+    state: latest
