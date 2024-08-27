@@ -24,6 +24,6 @@
     - name: "Extract iTerm2"
       unarchive:
         src: "{{ common_cache_dir }}/{{ iterm2_zip }}"
-        dest: "{{ local_home }}/Applications/iTerm2.app"
+        dest: "{{ local_home }}/Applications/"
   when: not iterm2_app.stat.exists
 
