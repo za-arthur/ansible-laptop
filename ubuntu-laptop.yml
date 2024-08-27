@@ -1,5 +1,5 @@
 ---
-- name: "Ansible Playbook to setup a new laptop"
+- name: "Ansible Playbook to setup a new Ubuntu laptop"
   hosts: "laptop"
   roles:
     - role: "common"

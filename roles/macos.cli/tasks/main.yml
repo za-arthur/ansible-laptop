@@ -1,0 +1,5 @@
+---
+- name: "Import iTerm2"
+  tags:
+    - "iterm2"
+  import_tasks: "iterm2.yml"

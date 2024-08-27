@@ -1,0 +1,8 @@
+---
+local_home: "{{ lookup('env','HOME') }}"
+common_cache_dir: /tmp/cacheansible
+
+# iterm2
+iterm2_download_location: "https://iterm2.com/downloads/stable/latest"
+iterm2_zip: "iTerm2.zip"
+
