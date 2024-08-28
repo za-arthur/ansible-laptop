@@ -17,6 +17,34 @@
     state: latest
     update_homebrew: true
 
+- name: "Install lsd"
+  tags:
+    - "cli_tools"
+  community.general.homebrew:
+    name: "lsd"
+    state: latest
+
+- name: "Install dua"
+  tags:
+    - "cli_tools"
+  community.general.homebrew:
+    name: "dua-cli"
+    state: latest
+
+- name: "Install yq"
+  tags:
+    - "cli_tools"
+  community.general.homebrew:
+    name: "yq"
+    state: latest
+
+- name: "Install fd"
+  tags:
+    - "cli_tools"
+  community.general.homebrew:
+    name: "fd"
+    state: latest
+
 - name: "Install fzf"
   tags:
     - "cli_tools"
