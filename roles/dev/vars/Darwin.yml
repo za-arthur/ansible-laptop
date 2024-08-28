@@ -1,9 +1,0 @@
----
-golang_tarball: "go{{ golang_version }}.darwin-arm64.tar.gz"
-
-nvim_tarball: "nvim-macos-arm64.tar.gz"
-
-gitui_tarball: "gitui-mac.tar.gz"
-
-act_tarball: "act_Darwin_arm64.tar.gz"
-

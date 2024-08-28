@@ -1,9 +1,0 @@
----
-golang_tarball: "go{{ golang_version }}.linux-amd64.tar.gz"
-
-nvim_tarball: "nvim-linux64.tar.gz"
-
-gitui_tarball: "gitui-linux-x86_64.tar.gz"
-
-act_tarball: "act_Linux_x86_64.tar.gz"
-

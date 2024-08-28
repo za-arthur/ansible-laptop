@@ -25,3 +25,14 @@
     tarball_name: "{{ act_tarball }}"
     tarball_add_file: "act"
 
+- name: "Install bear"
+  become: true
+  ansible.builtin.apt:
+    name: "bear"
+    state: latest
+
+- name: "Install pgformatter"
+  become: true
+  ansible.builtin.apt:
+    name: "pgformatter"
+    state: latest

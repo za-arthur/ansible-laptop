@@ -2,6 +2,7 @@
 # Go
 golang_version: "1.23.0"
 
+golang_tarball: "go{{ golang_version }}.linux-amd64.tar.gz"
 golang_tarball_repo: "https://go.dev/dl"
 golang_download_location: "{{ golang_tarball_repo }}/{{ golang_tarball }}"
 
@@ -14,15 +15,18 @@ golang_env:
 golang_version_string: "go version go{{ golang_version }} linux/amd64"
 
 # Neovim
+nvim_tarball: "nvim-linux64.tar.gz"
 nvim_download_location: "https://github.com/neovim/neovim/releases/download/stable/{{ nvim_tarball }}"
 nvim_config_repo: "git@github.com:za-arthur/nvim.git"
 
 # gitui
+gitui_tarball: "gitui-linux-x86_64.tar.gz"
 gitui_latest_url: "https://api.github.com/repos/extrawurst/gitui/releases/latest"
 gitui_tarball_url: "https://github.com/extrawurst/gitui/releases/download"
 gitui_download_location: "{{ gitui_tarball_url }}/{{ latest_version_tag }}/{{ gitui_tarball }}"
 
 # Act
+act_tarball: "act_Linux_x86_64.tar.gz"
 act_latest_url: "https://api.github.com/repos/nektos/act/releases/latest"
 act_tarball_url: "https://github.com/nektos/act/releases/download"
 act_download_location: "{{ act_tarball_url }}/{{ latest_version_tag }}/{{ act_tarball }}"

@@ -1,12 +1,21 @@
 ---
-- name: "Install bear"
-  become: true
-  ansible.builtin.apt:
-    name: "bear"
-    state: latest
+- name: "Import go"
+  import_tasks: "go.yml"
+  tags:
+    - "go"
 
-- name: "Install pgformatter"
-  become: true
-  ansible.builtin.apt:
-    name: "pgformatter"
-    state: latest
+- name: "Import nvim"
+  import_tasks: "nvim.yml"
+  tags:
+    - "nvim"
+
+- name: "Import pgenv"
+  import_tasks: "pgenv.yml"
+  tags:
+    - "pgenv"
+
+- name: "Import tools"
+  import_tasks: "tools.yml"
+  tags:
+    - "dev_tools"
+

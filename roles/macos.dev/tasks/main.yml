@@ -3,14 +3,37 @@
   community.general.homebrew:
     update_homebrew: true
 
+- name: "Install go"
+  community.general.homebrew:
+    name: "go"
+    state: latest
+
+- name: "Install neovim"
+  community.general.homebrew:
+    name: "neovim"
+    state: latest
+
+- name: "Checkout pgenv"
+  ansible.builtin.git:
+    repo: "git@github.com:theory/pgenv.git"
+    dest: "{{ local_home }}/.pgenv"
+
+- name: "Install gitui"
+  community.general.homebrew:
+    name: "gitui"
+    state: latest
+
+- name: "Install act"
+  community.general.homebrew:
+    name: "act"
+    state: latest
+
 - name: "Install bear"
-  become: true
   community.general.homebrew:
     name: "bear"
     state: latest
 
 - name: "Install pgformatter"
-  become: true
   community.general.homebrew:
     name: "pgformatter"
     state: latest

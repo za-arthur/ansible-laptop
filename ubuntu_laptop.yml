@@ -5,12 +5,9 @@
     - role: "common"
       tags:
         - "common"
-    - role: "dev"
-      tags:
-        - "dev"
     - role: "ubuntu.dev"
       tags:
         - "dev"
-    - role: "cli"
+    - role: "ubuntu.cli"
       tags:
         - "cli"
