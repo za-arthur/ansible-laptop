@@ -8,3 +8,11 @@
   tags:
     - "oh_my_zsh"
   import_tasks: "oh_my_zsh.yml"
+
+- name: "Install JetBrainsMono nerd font"
+  tags:
+    - "nerd_font"
+  community.general.homebrew_cask:
+    name: "font-jetbrains-mono-nerd-font"
+    state: latest
+    update_homebrew: true

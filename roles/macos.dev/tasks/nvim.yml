@@ -4,6 +4,11 @@
     name: "neovim"
     state: latest
 
+- name: "Install npm"
+  community.general.homebrew:
+    name: "npm"
+    state: latest
+
 - name: "Clone the nvim config repository"
   ansible.builtin.git:
     repo: "{{ nvim_config_repo }}"
