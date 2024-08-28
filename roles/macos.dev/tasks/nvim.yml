@@ -1,0 +1,18 @@
+---
+- name: "Install neovim"
+  community.general.homebrew:
+    name: "neovim"
+    state: latest
+
+- name: "Clone the nvim config repository"
+  ansible.builtin.git:
+    repo: "{{ nvim_config_repo }}"
+    dest: "{{ local_home }}/sources/nvim"
+    version: "main"
+
+- name: "Create a symlink to the nvim config directory"
+  file:
+    src: "{{ local_home }}/sources/nvim"
+    dest: "{{ local_home }}/.config/nvim"
+    state: link
+

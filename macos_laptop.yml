@@ -5,9 +5,6 @@
     - role: "macos.cli"
       tags:
         - "cli"
-    - role: "dev"
-      tags:
-        - "dev"
     - role: "macos.dev"
       tags:
         - "dev"
