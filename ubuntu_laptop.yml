@@ -2,9 +2,9 @@
 - name: "Ansible Playbook to setup a new Ubuntu laptop"
   hosts: "laptop"
   roles:
-    - role: "common"
+    - role: "ubuntu.dotfiles"
       tags:
-        - "common"
+        - "dotfiles"
     - role: "ubuntu.dev"
       tags:
         - "dev"

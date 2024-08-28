@@ -1,0 +1,7 @@
+---
+- name: "Create dotfiles"
+  include_role:
+    name: "dotfiles_link"
+  with_fileglob: "{{ role_path }}/files/dot_*"
+  loop_control:
+    loop_var: dotfile_path

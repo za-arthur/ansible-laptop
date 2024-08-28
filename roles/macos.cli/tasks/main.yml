@@ -1,13 +1,13 @@
 ---
-- name: "Import iTerm2"
-  tags:
-    - "iterm2"
-  import_tasks: "iterm2.yml"
-
 - name: "Import Oh My Zsh"
   tags:
     - "oh_my_zsh"
   import_tasks: "oh_my_zsh.yml"
+
+- name: "Install Wezterm"
+  community.general.homebrew_cask:
+    name: "wezterm"
+    state: latest
 
 - name: "Install JetBrainsMono nerd font"
   tags:
@@ -16,3 +16,17 @@
     name: "font-jetbrains-mono-nerd-font"
     state: latest
     update_homebrew: true
+
+- name: "Install fzf"
+  tags:
+    - "cli_tools"
+  community.general.homebrew:
+    name: "fzf"
+    state: latest
+
+- name: "Install rg"
+  tags:
+    - "cli_tools"
+  community.general.homebrew:
+    name: "rg"
+    state: latest

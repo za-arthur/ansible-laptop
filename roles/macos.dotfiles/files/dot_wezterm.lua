@@ -53,7 +53,6 @@ config.keys = {
   },
 }
 
-config.window_decorations = "RESIZE"
 config.show_new_tab_button_in_tab_bar = false
 
 --
@@ -150,8 +149,8 @@ local function get_current_working_dir(tab)
   local current_dir = tab.active_pane.current_working_dir
   local HOME_DIR = string.format('file://%s', os.getenv('HOME'))
 
-  return current_dir == HOME_DIR and '.'
-      or string.gsub(current_dir, '(.*[/\\])(.*)', '%2')
+  return (current_dir == HOME_DIR and '.')
+      or (current_dir ~= nil and string.gsub(current_dir.path, '(.*[/\\])(.*)', '%2'))
 end
 
 local function get_process_title(process_name)
@@ -164,30 +163,14 @@ end
 wezterm.on(
   'format-tab-title',
   function(tab, _, _, _, _, _)
-    local has_unseen_output = false
-    if not tab.is_active then
-      for _, pane in ipairs(tab.panes) do
-        if pane.has_unseen_output then
-          has_unseen_output = true
-          break
-        end
-      end
-    end
-
     local process_name = string.gsub(tab.active_pane.foreground_process_name, '(.*[/\\])(.*)', '%2')
     local title = ''
+
     -- Show default title for ssh
     if process_name == 'ssh' then
       title = string.format(' %s  %s ', get_process_title(process_name), tab.active_pane.title)
     else
       title = string.format(' %s  %s ', get_process_title(process_name), get_current_working_dir(tab))
-    end
-
-    if has_unseen_output then
-      return {
-        { Foreground = { Color = 'Orange' } },
-        { Text = title },
-      }
     end
 
     return {

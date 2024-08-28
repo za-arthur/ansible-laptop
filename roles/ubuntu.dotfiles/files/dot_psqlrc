@@ -1,0 +1,18 @@
+\set QUIET 1
+
+\setenv PSQL_EDITOR 'joe --exask'
+\pset linestyle unicode
+\pset null '(null)'
+
+\setenv PAGER 'pspg -bX --no-mouse'
+
+\set HISTCONTROL ignoreboth
+
+\timing
+\set PROMPT1 'pid:%[%033[1;44;1m%]%p%[%033[0m%] %M:%> %n@%/%R%x%# '
+\set PROMPT2 ' '
+
+\set x '\\setenv PAGER less'
+\set xx '\\setenv PAGER \'pspg -bX --no-mouse\''
+
+\unset QUIET

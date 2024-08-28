@@ -38,17 +38,6 @@
       ansible.builtin.apt:
         deb: "{{ common_cache_dir }}/{{ wezterm_deb }}"
 
-    - name: "Set wezterm dot file path"
-      set_fact:
-        wezterm_dotfile: "{{ role_path }}/files/dot_wezterm.lua"
-
-    - name: "Create wezterm configuration file"
-      include_role:
-        name: "common"
-        tasks_from: "dotfiles_create"
-      vars:
-        dotfile_path: "{{ wezterm_dotfile }}"
-
     - name: "Select wezterm as default terminal"
       become: true
       community.general.alternatives:

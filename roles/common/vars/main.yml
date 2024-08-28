@@ -1,6 +1,0 @@
----
-# obsidian
-obsidian_latest_url: "https://api.github.com/repos/obsidianmd/obsidian-releases/releases/latest"
-obsidian_deb_url: "https://github.com/obsidianmd/obsidian-releases/releases/download"
-obsidian_deb: "obsidian-{{ obsidian_version }}-amd64.deb"
-obsidian_download_location: "{{ obsidian_deb_url }}/v{{ obsidian_version }}/{{ obsidian_deb }}"
