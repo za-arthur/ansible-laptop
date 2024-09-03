@@ -20,4 +20,11 @@ alias ls="lsd"
 # PostgreSQL
 PATH="$HOME/.pgenv/bin:$HOME/.pgenv/pgsql/bin:$PATH"
 
+PATH="/opt/homebrew/opt/icu4c/bin:$PATH"
+PATH="/opt/homebrew/opt/icu4c/sbin:$PATH"
+
 export PATH
+
+export LDFLAGS="${LDFLAGS} -L/opt/homebrew/opt/icu4c/lib"
+export CPPFLAGS="${CPPFLAGS} -I/opt/homebrew/opt/icu4c/include"
+export PKG_CONFIG_PATH=/opt/homebrew/opt/icu4c/lib/pkgconfig:$PKG_CONFIG_PATH
