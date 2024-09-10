@@ -6,9 +6,11 @@ local act = wezterm.action
 -- Appearance
 --
 
+config.front_end = "Software"
+
 config.color_scheme = 'Dark+'
 
-config.font_size = 13
+config.font_size = 14
 config.line_height = 0.95
 
 config.font = wezterm.font_with_fallback {
@@ -22,13 +24,13 @@ config.warn_about_missing_glyphs = false
 
 config.keys = {
   {
-    key = 'r',
-    mods = 'CTRL|ALT',
+    key = 'd',
+    mods = 'SUPER',
     action = act.SplitHorizontal { domain = "CurrentPaneDomain" },
   },
   {
     key = 'd',
-    mods = 'CTRL|ALT',
+    mods = 'SHIFT|SUPER',
     action = act.SplitVertical { domain = "CurrentPaneDomain" },
   },
   {
@@ -58,32 +60,6 @@ config.show_new_tab_button_in_tab_bar = false
 --
 -- Handle events
 --
-
--- Handle psql pid as a link
-wezterm.on('open-uri', function(window, pane, uri)
-  local start, match_end = uri:find 'pid:'
-  if start == 1 then
-    local pid = uri:sub(match_end + 1)
-    window:perform_action(
-      act.SpawnCommandInNewTab {
-        args = { 'gdb', '-p', pid },
-      },
-      pane
-    )
-    -- prevent the default action from opening in a browser
-    return false
-  end
-  -- otherwise, by not specifying a return value, we allow later
-  -- handlers and ultimately the default action to caused the
-  -- URI to be opened in the browser
-end)
-
-config.hyperlink_rules = wezterm.default_hyperlink_rules()
-
-table.insert(config.hyperlink_rules, {
-  regex = 'pid:\\d+',
-  format = '$0',
-})
 
 -- Clean up selection on tab focus
 wezterm.on('window-focus-changed', function(window, pane)
