@@ -24,13 +24,6 @@
     name: "lsd"
     state: latest
 
-- name: "Install dua"
-  tags:
-    - "cli_tools"
-  community.general.homebrew:
-    name: "dua-cli"
-    state: latest
-
 - name: "Install yq"
   tags:
     - "cli_tools"
