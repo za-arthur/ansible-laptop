@@ -22,6 +22,7 @@ PATH="$HOME/.pgenv/bin:$HOME/.pgenv/pgsql/bin:$PATH"
 
 #PATH="/opt/homebrew/opt/icu4c/bin:$PATH"
 #PATH="/opt/homebrew/opt/icu4c/sbin:$PATH"
+PATH="/opt/homebrew/opt/binutils/bin:$PATH"
 
 PATH="$HOME/.local/bin:$PATH"
 

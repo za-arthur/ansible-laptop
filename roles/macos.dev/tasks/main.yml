@@ -49,3 +49,10 @@
     state: latest
   tags:
     - "dev_tools"
+
+- name: "Install pspg"
+  community.general.homebrew:
+    name: "pspg"
+    state: latest
+  tags:
+    - "dev_tools"
