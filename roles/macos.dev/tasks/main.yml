@@ -22,9 +22,9 @@
   tags:
     - "pgenv"
 
-- name: "Install gitui"
+- name: "Install lazygit"
   community.general.homebrew:
-    name: "gitui"
+    name: "lazygit"
     state: latest
   tags:
     - "dev_tools"
