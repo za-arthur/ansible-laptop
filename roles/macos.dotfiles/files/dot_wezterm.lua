@@ -6,13 +6,9 @@ local act = wezterm.action
 -- Appearance
 --
 
-config.front_end = "Software"
-config.animation_fps = 1
-config.max_fps = 60
-
 config.color_scheme = 'Dark+'
 
-config.font_size = 16
+config.font_size = 14
 config.line_height = 0.95
 
 config.font = wezterm.font_with_fallback {
