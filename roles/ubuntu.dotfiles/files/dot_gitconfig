@@ -8,3 +8,6 @@
 [user]
 	email = zaartur@gmail.com
 	name = Artur Zakirov
+	signingkey = /home/artur/.ssh/id_ed25519.pub
+[gpg]
+	format = ssh
