@@ -18,6 +18,8 @@ golang_version_string: "go version go{{ golang_version }} linux/amd64"
 nvim_tarball: "nvim-linux64.tar.gz"
 nvim_download_location: "https://github.com/neovim/neovim/releases/download/stable/{{ nvim_tarball }}"
 
+nvim_config_repo: "git@github.com:za-arthur/nvim.git"
+
 # gitui
 gitui_tarball: "gitui-linux-x86_64.tar.gz"
 gitui_latest_url: "https://api.github.com/repos/extrawurst/gitui/releases/latest"
