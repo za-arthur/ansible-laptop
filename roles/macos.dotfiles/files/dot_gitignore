@@ -9,6 +9,7 @@ compile_commands.json
 .cache/
 
 .editorconfig
+.clang-format
 
 venv/
 
