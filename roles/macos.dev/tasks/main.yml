@@ -10,6 +10,11 @@
   tags:
     - "go"
 
+- name: "Install rust"
+  import_tasks: "rust.yml"
+  tags:
+    - "rust"
+
 - name: "Import nvim"
   import_tasks: "nvim.yml"
   tags:
