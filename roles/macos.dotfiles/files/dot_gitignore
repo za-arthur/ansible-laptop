@@ -4,13 +4,12 @@
 
 .bundle/
 vendor/
-
-compile_commands.json
+venv/
 .cache/
 
+compile_commands.json
 .editorconfig
 .clang-format
-
-venv/
+Session.vim
 
 .DS_Store
