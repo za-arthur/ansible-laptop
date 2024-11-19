@@ -4,10 +4,10 @@
 
 .bundle/
 vendor/
-
-compile_commands.json
+venv/
 .cache/
 
+compile_commands.json
 .editorconfig
+Session.vim
 
-venv/
