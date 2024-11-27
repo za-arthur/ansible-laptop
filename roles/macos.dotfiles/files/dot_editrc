@@ -1,0 +1,11 @@
+#
+#
+# CAUTION: libedit will stop reading this file at a *blank* line!
+#          To insert readability whitespace, minimally prefix it with a '#'-comment.
+#
+# Make bindings like Emacs.
+bind -e
+#
+# Search history similar to readline-style.
+bind "^r" em-inc-search-prev
+bind "^s" em-inc-search-next
