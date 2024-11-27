@@ -61,3 +61,10 @@
     state: latest
   tags:
     - "dev_tools"
+
+- name: "Install llvm"
+  community.general.homebrew:
+    name: "llvm"
+    state: latest
+  tags:
+    - "dev_tools"
