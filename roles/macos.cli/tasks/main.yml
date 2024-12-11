@@ -1,4 +1,9 @@
 ---
+- name: "Import Oh My Zsh"
+  tags:
+    - "oh_my_zsh"
+  import_tasks: "oh_my_zsh.yml"
+
 - name: "Install Wezterm"
   community.general.homebrew_cask:
     name: "wezterm"
@@ -11,13 +16,6 @@
     name: "font-jetbrains-mono-nerd-font"
     state: latest
     update_homebrew: true
-
-- name: "Import starship"
-  tags:
-    - "cli_tools"
-  community.general.homebrew:
-    name: "starship"
-    state: latest
 
 - name: "Install lsd"
   tags:

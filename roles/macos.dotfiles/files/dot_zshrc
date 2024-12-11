@@ -1,3 +1,6 @@
+# Path to your oh-my-zsh installation
+export ZSH="$HOME/.oh-my-zsh"
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 ZSH_THEME="robbyrussell"
@@ -33,5 +36,3 @@ export PATH
 export LDFLAGS="${LDFLAGS} -L/opt/homebrew/opt/icu4c/lib -L/opt/homebrew/opt/openssl/lib -L/opt/homebrew/opt/zstd/lib"
 export CPPFLAGS="${CPPFLAGS} -I/opt/homebrew/opt/icu4c/include -I /opt/homebrew/opt/openssl/include -I/opt/homebrew/opt/zstd/include"
 export PKG_CONFIG_PATH=/opt/homebrew/opt/icu4c/lib/pkgconfig:$PKG_CONFIG_PATH
-
-eval "$(starship init zsh)"
