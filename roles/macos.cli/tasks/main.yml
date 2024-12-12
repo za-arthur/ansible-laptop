@@ -27,6 +27,11 @@
     name: "zsh-syntax-highlighting"
     state: latest
 
+- name: "Install zsh-autosuggestions"
+  community.general.homebrew:
+    name: "zsh-autosuggestions"
+    state: latest
+
 - name: "Install lsd"
   tags:
     - "cli_tools"
