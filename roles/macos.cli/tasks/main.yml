@@ -1,9 +1,4 @@
 ---
-- name: "Import Oh My Zsh"
-  tags:
-    - "oh_my_zsh"
-  import_tasks: "oh_my_zsh.yml"
-
 - name: "Install Wezterm"
   community.general.homebrew_cask:
     name: "wezterm"
@@ -16,6 +11,21 @@
     name: "font-jetbrains-mono-nerd-font"
     state: latest
     update_homebrew: true
+
+- name: "Install powerlevel10k"
+  community.general.homebrew:
+    name: "powerlevel10k"
+    state: latest
+
+- name: "Install zsh-history-substring-search"
+  community.general.homebrew:
+    name: "zsh-history-substring-search"
+    state: latest
+
+- name: "Install zsh-syntax-highlighting"
+  community.general.homebrew:
+    name: "zsh-syntax-highlighting"
+    state: latest
 
 - name: "Install lsd"
   tags:
