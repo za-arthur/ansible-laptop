@@ -61,6 +61,26 @@ config.keys = {
     mods = 'SHIFT|ALT',
     action = act.AdjustPaneSize { "Down", 1 },
   },
+  {
+    mods='',
+    key="Home",
+    action=wezterm.action{SendString="\001"}
+  },
+  {
+    mods='',
+    key="End",
+    action=wezterm.action{SendString="\005"}
+  },
+  {
+    mods='OPT',
+    key="LeftArrow",
+    action=wezterm.action{SendKey={key="b", mods="ALT"}}
+  },
+  {
+    mods='OPT',
+    key="RightArrow",
+    action=wezterm.action{SendKey={key="f", mods="ALT"}}
+  },
 }
 
 config.show_new_tab_button_in_tab_bar = false
