@@ -1,0 +1,16 @@
+font-family = "JetBrainsMono Nerd Font"
+font-feature = "-calt"
+font-feature = "-liga"
+font-feature = "-dlig"
+font-size = "14"
+
+background-opacity = 0.96
+background-blur-radius = 40
+
+adjust-cell-height = "3%"
+
+theme = "Dark+"
+
+macos-titlebar-style = "tabs"
+copy-on-select = "true"
+quit-after-last-window-closed = "true"

@@ -21,6 +21,13 @@
     - "nvim"
 
 - name: "Checkout pgenv"
+  community.general.homebrew:
+    name: "pyenv"
+    state: latest
+  tags:
+    - "pyenv"
+
+- name: "Install pyenv"
   ansible.builtin.git:
     repo: "git@github.com:theory/pgenv.git"
     dest: "{{ local_home }}/.pgenv"

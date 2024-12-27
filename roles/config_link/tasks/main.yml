@@ -1,0 +1,19 @@
+---
+- name: "Get config file name from {{ config_path }}"
+  set_fact:
+    config_dst: "{{ local_home }}/\
+      .config/\
+      {{ config_path | basename }}"
+
+- name: "Create directory {{ config_dst }}"
+  file:
+    path: "{{ config_dst }}"
+    state: directory
+
+- name: "Create symlink in {{ config_dst }}"
+  file:
+    src: "{{ item }}"
+    dest: "{{ config_dst }}/{{ item | basename }}"
+    state: link
+    force: true
+  with_fileglob: "{{ config_path }}/*"
