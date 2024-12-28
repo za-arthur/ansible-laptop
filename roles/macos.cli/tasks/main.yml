@@ -1,25 +1,16 @@
 ---
-- name: "Get the role base path"
-  set_fact:
-    cli_role_path: "{{ role_path }}"
-
-- name: "Install Wezterm"
-  community.general.homebrew_cask:
-    name: "wezterm"
-    state: latest
-
-- name: "Install and configure Ghostty"
+- name: "Install and configure ghostty"
   block:
-    - name: "Install Ghostty"
+    - name: "Install ghostty"
       community.general.homebrew_cask:
         name: "ghostty"
         state: latest
 
-    - name: "Link Ghostty config files"
-      include_role:
-        name: "config_link"
-      vars:
-        config_path: "{{ cli_role_path }}/files/config/ghostty"
+    - name: "Create a symlink to the ghostty config directory"
+      file:
+        src: "{{ role_path }}/files/config/ghostty"
+        dest: "{{ local_home }}/.config/ghostty"
+        state: link
 
 - name: "Install JetBrainsMono nerd font"
   tags:

@@ -11,6 +11,9 @@ adjust-cell-height = "3%"
 
 theme = "Dark+"
 
+cursor-style = "block"
+
 macos-titlebar-style = "tabs"
 copy-on-select = "true"
+clipboard-paste-protection = "false"
 quit-after-last-window-closed = "true"
