@@ -13,8 +13,6 @@
         state: link
 
 - name: "Install JetBrainsMono nerd font"
-  tags:
-    - "nerd_font"
   community.general.homebrew_cask:
     name: "font-jetbrains-mono-nerd-font"
     state: latest
@@ -22,43 +20,31 @@
     install_options: force
 
 - name: "Install lsd"
-  tags:
-    - "cli_tools"
   community.general.homebrew:
     name: "lsd"
     state: latest
 
 - name: "Install yq"
-  tags:
-    - "cli_tools"
   community.general.homebrew:
     name: "yq"
     state: latest
 
 - name: "Install fd"
-  tags:
-    - "cli_tools"
   community.general.homebrew:
     name: "fd"
     state: latest
 
 - name: "Install fzf"
-  tags:
-    - "cli_tools"
   community.general.homebrew:
     name: "fzf"
     state: latest
 
 - name: "Install rg"
-  tags:
-    - "cli_tools"
   community.general.homebrew:
     name: "rg"
     state: latest
 
 - name: "Install bat"
-  tags:
-    - "cli_tools"
   community.general.homebrew:
     name: "bat"
     state: latest

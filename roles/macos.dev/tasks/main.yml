@@ -7,71 +7,49 @@
   community.general.homebrew:
     name: "go"
     state: latest
-  tags:
-    - "go"
 
 - name: "Install rust"
   import_tasks: "rust.yml"
-  tags:
-    - "rust"
 
 - name: "Import nvim"
   import_tasks: "nvim.yml"
-  tags:
-    - "nvim"
 
 - name: "Checkout pgenv"
   community.general.homebrew:
     name: "pyenv"
     state: latest
-  tags:
-    - "pyenv"
 
 - name: "Install pyenv"
   ansible.builtin.git:
     repo: "git@github.com:theory/pgenv.git"
     dest: "{{ local_home }}/.pgenv"
-  tags:
-    - "pgenv"
 
 - name: "Install lazygit"
   community.general.homebrew:
     name: "lazygit"
     state: latest
-  tags:
-    - "dev_tools"
 
 - name: "Install act"
   community.general.homebrew:
     name: "act"
     state: latest
-  tags:
-    - "dev_tools"
 
 - name: "Install bear"
   community.general.homebrew:
     name: "bear"
     state: latest
-  tags:
-    - "dev_tools"
 
 - name: "Install pgformatter"
   community.general.homebrew:
     name: "pgformatter"
     state: latest
-  tags:
-    - "dev_tools"
 
 - name: "Install pspg"
   community.general.homebrew:
     name: "pspg"
     state: latest
-  tags:
-    - "dev_tools"
 
 - name: "Install llvm"
   community.general.homebrew:
     name: "llvm"
     state: latest
-  tags:
-    - "dev_tools"
