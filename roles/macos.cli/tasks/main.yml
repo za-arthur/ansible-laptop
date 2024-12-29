@@ -21,6 +21,11 @@
     update_homebrew: true
     install_options: force
 
+- name: "Install zsh"
+  community.general.homebrew:
+    name: "zsh"
+    state: latest
+
 - name: "Install powerlevel10k"
   community.general.homebrew:
     name: "powerlevel10k"
@@ -74,4 +79,11 @@
     - "cli_tools"
   community.general.homebrew:
     name: "rg"
+    state: latest
+
+- name: "Install bat"
+  tags:
+    - "cli_tools"
+  community.general.homebrew:
+    name: "bat"
     state: latest

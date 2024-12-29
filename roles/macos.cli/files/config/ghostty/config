@@ -12,6 +12,7 @@ adjust-cell-height = "3%"
 theme = "Dark+"
 
 cursor-style = "block"
+macos-option-as-alt = "true"
 
 macos-titlebar-style = "tabs"
 copy-on-select = "true"
