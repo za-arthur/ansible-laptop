@@ -21,31 +21,6 @@
     update_homebrew: true
     install_options: force
 
-- name: "Install zsh"
-  community.general.homebrew:
-    name: "zsh"
-    state: latest
-
-- name: "Install powerlevel10k"
-  community.general.homebrew:
-    name: "powerlevel10k"
-    state: latest
-
-- name: "Install zsh-history-substring-search"
-  community.general.homebrew:
-    name: "zsh-history-substring-search"
-    state: latest
-
-- name: "Install zsh-syntax-highlighting"
-  community.general.homebrew:
-    name: "zsh-syntax-highlighting"
-    state: latest
-
-- name: "Install zsh-autosuggestions"
-  community.general.homebrew:
-    name: "zsh-autosuggestions"
-    state: latest
-
 - name: "Install lsd"
   tags:
     - "cli_tools"
