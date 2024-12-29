@@ -18,3 +18,5 @@ macos-titlebar-style = "tabs"
 copy-on-select = "true"
 clipboard-paste-protection = "false"
 quit-after-last-window-closed = "true"
+
+command = "/opt/homebrew/bin/fish"

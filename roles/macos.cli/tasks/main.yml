@@ -12,6 +12,9 @@
         dest: "{{ local_home }}/.config/ghostty"
         state: link
 
+- name: "Import fish"
+  import_tasks: "fish.yml"
+
 - name: "Install JetBrainsMono nerd font"
   community.general.homebrew_cask:
     name: "font-jetbrains-mono-nerd-font"

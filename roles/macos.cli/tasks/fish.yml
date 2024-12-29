@@ -1,0 +1,21 @@
+---
+- name: "Install fish"
+  community.general.homebrew:
+    name: "fish"
+    state: latest
+
+- name: "Install fisher"
+  community.general.homebrew:
+    name: "fisher"
+    state: latest
+
+- name: "Ensure cache fish config dir exist"
+  file:
+    path: "{{ local_home }}/.config/fish"
+    state: directory
+
+- name: "Create a symlink to the fish config file"
+  file:
+    src: "{{ role_path }}/files/config/fish/config.fish"
+    dest: "{{ local_home }}/.config/fish/config.fish"
+    state: link
