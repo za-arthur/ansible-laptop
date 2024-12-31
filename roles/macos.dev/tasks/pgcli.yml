@@ -1,0 +1,16 @@
+---
+- name: "Install pgcli"
+  community.general.homebrew:
+    name: "pgcli"
+    state: latest
+
+- name: "Ensure pgcli config dir exist"
+  file:
+    path: "{{ local_home }}/.config/pgcli"
+    state: directory
+
+- name: "Create a symlink to the pgcli config file"
+  file:
+    src: "{{ role_path }}/files/config/pgcli/config"
+    dest: "{{ local_home }}/.config/pgcli/config"
+    state: link

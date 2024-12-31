@@ -9,7 +9,7 @@
     name: "fisher"
     state: latest
 
-- name: "Ensure cache fish config dir exist"
+- name: "Ensure fish config dir exist"
   file:
     path: "{{ local_home }}/.config/fish"
     state: directory

@@ -49,6 +49,9 @@
     name: "pspg"
     state: latest
 
+- name: "Import pgcli"
+  import_tasks: "pgcli.yml"
+
 - name: "Install llvm"
   community.general.homebrew:
     name: "llvm"
