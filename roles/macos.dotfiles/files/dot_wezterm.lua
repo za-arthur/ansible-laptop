@@ -2,6 +2,8 @@ local wezterm = require 'wezterm'
 local config = {}
 local act = wezterm.action
 
+config.default_prog = { '/opt/homebrew/bin/fish', '-l' }
+
 --
 -- Appearance
 --
@@ -26,9 +28,15 @@ config.freetype_load_target = 'Light'
 config.freetype_render_target = 'HorizontalLcd'
 config.cell_width = 0.9
 
+config.max_fps = 120
+
 config.window_padding = {
   bottom = 0,
 }
+
+--
+-- Key maps
+--
 
 config.keys = {
   {
@@ -125,6 +133,9 @@ local process_icons = {
   },
   ['bash'] = {
     { Text = wezterm.nerdfonts.cod_terminal_bash },
+  },
+  ['fish'] = {
+    { Text = wezterm.nerdfonts.cod_terminal },
   },
   ['htop'] = {
     { Text = wezterm.nerdfonts.mdi_chart_donut_variant },
