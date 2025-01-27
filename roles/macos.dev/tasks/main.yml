@@ -29,6 +29,11 @@
     name: "lazygit"
     state: latest
 
+- name: "Install delta"
+  community.general.homebrew:
+    name: "git-delta"
+    state: latest
+
 - name: "Install act"
   community.general.homebrew:
     name: "act"

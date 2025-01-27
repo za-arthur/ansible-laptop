@@ -1,6 +1,14 @@
 [core]
 	excludesfile = /Users/artur/.gitignore
-	pager = less -F -X
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true  # use n and N to move between diff sections
+	line-numbers = true
+	hyperlinks = true
+[merge]
+	conflictStyle = zdiff3
 [pull]
 	ff = only
 [url "ssh://git@github.com/"]
