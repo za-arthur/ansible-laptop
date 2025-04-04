@@ -16,3 +16,5 @@
 [user]
 	email = zaartur@gmail.com
 	name = Artur Zakirov
+[alias]
+	rl = reflog --date=local
