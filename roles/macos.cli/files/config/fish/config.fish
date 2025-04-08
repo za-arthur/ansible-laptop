@@ -2,7 +2,7 @@ if status is-interactive
     set fish_greeting ""
 
     # Commands to run in interactive sessions can go here
-    source $HOME/.orbstack/shell/init.fish
+    source $HOME/.orbstack/shell/init2.fish
 
     # PostgreSQL
     fish_add_path "$HOME/.pgenv/pgsql/bin"
