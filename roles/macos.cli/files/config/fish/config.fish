@@ -25,6 +25,8 @@ if status is-interactive
     set -Ux CPPFLAGS "-I/opt/homebrew/opt/icu4c/include -I /opt/homebrew/opt/openssl/include -I/opt/homebrew/opt/zstd/include"
     set -Ux PKG_CONFIG_PATH "/opt/homebrew/opt/icu4c/lib/pkgconfig"
 
+    set -Ux MACOSX_DEPLOYMENT_TARGET (sw_vers -productVersion)
+
     # Python
     set -Ux PYENV_ROOT $HOME/.pyenv
     fish_add_path $PYENV_ROOT/bin
