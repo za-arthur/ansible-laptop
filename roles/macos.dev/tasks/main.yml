@@ -14,12 +14,12 @@
 - name: "Import nvim"
   import_tasks: "nvim.yml"
 
-- name: "Checkout pgenv"
+- name: "Checkout pyenv"
   community.general.homebrew:
     name: "pyenv"
     state: latest
 
-- name: "Install pyenv"
+- name: "Install pgenv"
   ansible.builtin.git:
     repo: "git@github.com:theory/pgenv.git"
     dest: "{{ local_home }}/.pgenv"
