@@ -51,3 +51,8 @@
   community.general.homebrew:
     name: "bat"
     state: latest
+
+- name: "Install lnav"
+  community.general.homebrew:
+    name: "lnav"
+    state: latest
