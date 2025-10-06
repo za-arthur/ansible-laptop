@@ -1,0 +1,118 @@
+Completion:
+  AllScopes: Yes
+
+  # https://clang.llvm.org/extra/clang-tidy/checks/list.html
+Diagnostics:
+  UnusedIncludes: None # 'Strict' is annoying by possibly useful
+  ClangTidy:
+    Add: [
+      misc-definitions-in-headers,
+      misc-confusable-identifiers,
+      misc-redundant-expression,
+      # misc-unused-parameters,  # <--- too chatty, not good with callbacks and stuff
+      bugprone-assert-side-effect,
+      bugprone*,
+      cert-*-c,
+      clang-analyzer-core*,
+      misc-misplaced-const,
+      misc-redundant-expression,
+      misc-confusable-identifiers,
+      cppcoreguidelines-narrowing-conversions,
+      # I have a catch-all for readability-*, but also list out things that I used to explicitly add before I used the
+      # catch-all:
+      readability-*,
+      readability-inconsistent-declaration-parameter-name, # <-- A personal favorite
+      readability-named-parameter,
+      readability-redundant-preprocessor,
+      readability-simplify-boolean-expr,
+      readability-duplicate-include,
+      readability-misplaced-array-index,
+      readability-redundant-control-flow,
+      readability-redundant-declaration,
+      readability-uppercase-literal-suffix,
+      # readability-else-after-return, # <-- slightly too chatty to be worth it, but interesting idea
+      readability-suspicious-call-argument, # <-- Good in moderation, with MinimumIdentifierNameLength and other readability-suspicious-call-argument.* options set below
+      ]
+    CheckOptions:
+      # https://clang.llvm.org/extra/clang-tidy/checks/readability/suspicious-call-argument.html
+      # XXX UPDATE 2024-08 Added 'readability-suspicious-call-argument' to "Remove:" list, too many false positives (e.g. in selfuncs.c)
+      readability-suspicious-call-argument.Equality: true
+      readability-suspicious-call-argument.Abbreviation: false
+      readability-suspicious-call-argument.Prefix: false
+      readability-suspicious-call-argument.Suffix: false
+      readability-suspicious-call-argument.Substring: false
+      readability-suspicious-call-argument.Levenshtein: true
+      readability-suspicious-call-argument.JaroWinkler: false
+      readability-suspicious-call-argument.Dice: false
+      readability-suspicious-call-argument.MinimumIdentifierNameLength: 5
+      readability-suspicious-call-argument.LevenshteinDissimilarBelow: 50
+      readability-suspicious-call-argument.LevenshteinSimilarAbove: 70
+      # https://clang.llvm.org/extra/clang-tidy/checks/readability/inconsistent-declaration-parameter-name.html
+      readability-inconsistent-declaration-parameter-name.Strict: true
+      readability-inconsistent-declaration-parameter-name.IgnoreMacros: false
+      bugprone-assert-side-effect.AssertMacros: 'Assert,AssertMacro,AssertArg,AssertState,AssertPointerAlignment'
+      bugprone-assert-side-effect.CheckFunctionCalls: false
+    Remove: [
+        readability-suspicious-call-argument,  # XXX UPDATE 2024-08 Too many false positives, left old CheckOptions config in place tho
+        bugprone-assignment-in-if-condition,
+        bugprone-branch-clone,
+        bugprone-implicit-widening-of-multiplication-result,
+        bugprone-integer-division, # for guc.c + GiST warning about float precision
+        bugprone-macro-parentheses, # Too annoying to be worth it, on reflection
+        bugprone-narrowing-conversions,
+        bugprone-reserved-identifier, # Don't complain about _bt_compare()-style identifiers
+        cert-dcl37-c,                 # Don't complain about _bt_compare()-style identifiers
+        cert-dcl51-cpp,               # Don't complain about _bt_compare()-style identifiers
+        bugprone-signed-char-misuse, # varlena.c unbreak
+        bugprone-suspicious-include, # Unbreaks varlena.c's #include of a .c file, among others
+        bugprone-too-small-loop-variable,
+        cert-err34-c, # Suppress moans about atoi(), sscanf(), etc
+        cert-str34-c, # varlena.c unbreak
+        cert-env33-c, # varlena.c unbreak
+        cppcoreguidelines-narrowing-conversions,
+        bugprone-easily-swappable-parameters,  # Too many false positives
+        bugprone-swapped-arguments,            # Too many false positives
+        # Interesting but ultimately too annoying to keep turned on:
+        readability-isolate-declaration,
+        readability-else-after-return,
+        readability-non-const-parameter,
+        #useless:
+        readability-braces-around-statements,
+        readability-identifier-length,
+        readability-function-cognitive-complexity,
+        readability-magic-numbers,
+        readability-redundant-casting, # <-- high latency so disable
+      ]
+
+InlayHints:
+  BlockEnd: No # Redundant with treesitter-context
+  DeducedTypes: Yes
+  Designators: Yes
+  Enabled: Yes
+  ParameterNames: Yes
+  TypeNameLimit: 50
+
+# 'Hover' is 'Enter' text box signature thingy, called 'textDocument/hover' by LSP spec:
+# https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_hover
+Hover:
+  ShowAKA: Yes # Expand typedefs
+
+---
+  # Avoid unused function errors with inline functions in all headers. (Make sure to __include__ postgres.h and c.h here.)
+  If:
+    PathMatch: .*\.h
+  CompileFlags:
+    Add: [
+      -Wno-unused-function,
+    ]
+
+---
+  # postgres headers are not quite self contained, and must always be interpreted as if compiled from a .c file that
+  # includes postgres.h before including the header. (Make sure to __exclude__ postgres.h and c.h here.)
+  If:
+    PathMatch: .*\.h
+    PathExclude: [.*/c\.h,.*/postgres\.h]
+  CompileFlags:
+    Add: [
+      --include=postgres.h,
+    ]
