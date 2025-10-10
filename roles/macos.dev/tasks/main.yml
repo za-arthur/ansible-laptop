@@ -58,4 +58,4 @@
   import_tasks: "pgcli.yml"
 
 - name: "Import llvm"
-  import_tasks: "llvm.yaml"
+  import_tasks: "llvm.yml"
