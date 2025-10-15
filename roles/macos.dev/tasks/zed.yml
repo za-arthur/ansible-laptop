@@ -1,0 +1,11 @@
+---
+- name: "Ensure zed config dir exist"
+  file:
+    path: "{{ local_home }}/.config/zed"
+    state: directory
+
+- name: "Create a symlink to the fish config file"
+  file:
+    src: "{{ role_path }}/files/config/zed/settings.json"
+    dest: "{{ local_home }}/.config/zed/settings.json"
+    state: link
