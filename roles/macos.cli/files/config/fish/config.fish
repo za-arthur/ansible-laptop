@@ -11,7 +11,6 @@ if status is-interactive
     # Homebrew
     eval "$(/opt/homebrew/bin/brew shellenv)"
 
-    fish_add_path "/opt/homebrew/opt/binutils/bin"
     fish_add_path "/opt/homebrew/opt/gnu-getopt/bin"
     fish_add_path "/opt/homebrew/opt/llvm/bin"
     fish_add_path "/opt/homebrew/opt/grep/libexec/gnubin"
