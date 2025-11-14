@@ -56,3 +56,8 @@
   community.general.homebrew:
     name: "lnav"
     state: latest
+
+- name: "Install glow"
+  community.general.homebrew:
+    name: "glow"
+    state: latest
