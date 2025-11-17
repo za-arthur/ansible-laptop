@@ -34,11 +34,6 @@
     name: "git-delta"
     state: latest
 
-- name: "Install act"
-  community.general.homebrew:
-    name: "act"
-    state: latest
-
 - name: "Install bear"
   community.general.homebrew:
     name: "bear"
