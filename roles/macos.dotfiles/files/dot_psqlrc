@@ -1,6 +1,6 @@
 \set QUIET 1
 
-\setenv PSQL_EDITOR 'joe --exask'
+\setenv PSQL_EDITOR 'nvim'
 \pset linestyle unicode
 \pset null '(null)'
 
