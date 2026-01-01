@@ -33,16 +33,4 @@ if status is-interactive
     # Aliases
     alias ls="lsd"
     alias ll="ls -lh"
-
-    # Pure config
-    set -U pure_show_system_time true
-    set -U pure_show_subsecond_command_duration true
-
-    set -U pure_symbol_virtualenv_prefix "🐍 "
-    set -U pure_symbol_aws_profile_prefix "☁️ "
-
-    set -U fish_transient_prompt 1
-    set -U pure_enable_single_line_prompt true
-
-    set -U pure_check_for_new_release true
 end
