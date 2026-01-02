@@ -33,4 +33,7 @@ if status is-interactive
     # Aliases
     alias ls="lsd"
     alias ll="ls -lh"
+
+    # Fix tide "normal" icon
+    set -U tide_character_vi_icon_default $tide_character_icon
 end
