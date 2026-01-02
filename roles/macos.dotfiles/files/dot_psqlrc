@@ -7,6 +7,7 @@
 \setenv PAGER 'pspg -bX --no-mouse'
 
 \set HISTCONTROL ignoreboth
+\set HISTSIZE 10000
 
 \timing
 \set PROMPT1 'pid:%[%033[1;44;1m%]%p%[%033[0m%] %M:%> %n@%/%R%x%# '
