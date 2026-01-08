@@ -11,14 +11,14 @@
     "default_profile": "ask",
     "default_model": {
       "provider": "copilot_chat",
-      "model": "claude-sonnet-4.5"
+      "model": "claude-sonnet-4.5",
     },
-    "model_parameters": []
+    "model_parameters": [],
   },
   "vim_mode": false,
   "telemetry": {
     "diagnostics": false,
-    "metrics": false
+    "metrics": false,
   },
   "ui_font_size": 14,
   "buffer_font_size": 14,
@@ -28,15 +28,13 @@
   "show_wrap_guides": true,
   "wrap_guides": [80, 120],
   "gutter": {
-    "line_number": true,
-    "code_actions": false,
     "folds": false,
-    "runnables": false
+    "runnables": false,
   },
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "VSCode Dark Modern"
+    "dark": "VSCode Dark Modern",
   },
   "show_whitespaces": "all",
   "file_scan_exclusions": [
@@ -45,6 +43,6 @@
     "**/.git",
     "**/*.o",
     "**/.DS_Store",
-    "**/__pycache__"
-  ]
+    "**/__pycache__",
+  ],
 }

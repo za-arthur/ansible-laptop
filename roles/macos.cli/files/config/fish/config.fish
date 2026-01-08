@@ -22,7 +22,7 @@ if status is-interactive
 
     set -Ux LDFLAGS "-L/opt/homebrew/opt/icu4c/lib -L/opt/homebrew/opt/openssl/lib -L/opt/homebrew/opt/zstd/lib -L/opt/homebrew/opt/croaring/lib"
     set -Ux CPPFLAGS "-I/opt/homebrew/opt/icu4c/include -I/opt/homebrew/opt/openssl/include -I/opt/homebrew/opt/zstd/include -I/opt/homebrew/opt/croaring/include"
-    set -Ux PKG_CONFIG_PATH "$(brew --prefix openssl)/lib/pkgconfig:$(brew --prefix icu4c)/lib/pkgconfig:$HOME/.pgenv/lib/pkgconfig"
+    set -Ux PKG_CONFIG_PATH "$(brew --prefix openssl)/lib/pkgconfig:$(brew --prefix icu4c)/lib/pkgconfig:$HOME/.pgenv/pgsql/lib/pkgconfig"
 
     set -Ux MACOSX_DEPLOYMENT_TARGET (sw_vers -productVersion)
 
