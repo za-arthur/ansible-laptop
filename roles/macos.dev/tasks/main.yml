@@ -14,15 +14,8 @@
 - name: "Import nvim"
   import_tasks: "nvim.yml"
 
-- name: "Checkout pyenv"
-  community.general.homebrew:
-    name: "pyenv"
-    state: latest
-
-- name: "Install pgenv"
-  ansible.builtin.git:
-    repo: "git@github.com:theory/pgenv.git"
-    dest: "{{ local_home }}/.pgenv"
+- name: "Import zed"
+  import_tasks: "zed.yml"
 
 - name: "Install lazygit"
   community.general.homebrew:
@@ -34,20 +27,8 @@
     name: "git-delta"
     state: latest
 
-- name: "Install bear"
-  community.general.homebrew:
-    name: "bear"
-    state: latest
-
-- name: "Install pgformatter"
-  community.general.homebrew:
-    name: "pgformatter"
-    state: latest
-
-- name: "Install pspg"
-  community.general.homebrew:
-    name: "pspg"
-    state: latest
+- name: "Import PostgreSQL dev tools"
+  import_tasks: "pgtools.yml"
 
 - name: "Import pgcli"
   import_tasks: "pgcli.yml"
@@ -55,5 +36,7 @@
 - name: "Import llvm"
   import_tasks: "llvm.yml"
 
-- name: "Import zed"
-  import_tasks: "zed.yml"
+- name: "Checkout pyenv"
+  community.general.homebrew:
+    name: "pyenv"
+    state: latest
