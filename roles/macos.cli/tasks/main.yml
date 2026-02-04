@@ -61,3 +61,13 @@
   community.general.homebrew:
     name: "glow"
     state: latest
+
+- name: "Install linearmouse"
+  community.general.homebrew:
+    name: "linearmouse"
+    state: latest
+
+- name: "Install mole"
+  community.general.homebrew:
+    name: "mole"
+    state: latest
