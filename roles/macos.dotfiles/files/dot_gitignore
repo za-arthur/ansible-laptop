@@ -13,3 +13,5 @@ compile_commands.json
 Session.vim
 
 .DS_Store
+
+.github/copilot-instructions.md
