@@ -4,6 +4,11 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
     source $HOME/.orbstack/shell/init2.fish
 
+    # fzf integration
+    if type -q fzf
+        fzf --fish | source
+    end
+
     # PostgreSQL
     fish_add_path "$HOME/.pgenv/pgsql/bin"
     fish_add_path "$HOME/.pgenv/bin"
