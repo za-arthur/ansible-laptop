@@ -10,10 +10,9 @@
   "agent_buffer_font_size": 14.0,
   "agent_ui_font_size": 16.0,
   "which_key": {
-    "enabled": true
+    "enabled": true,
   },
   "agent": {
-    "always_allow_tool_actions": true,
     "default_profile": "write",
     "default_model": {
       "provider": "copilot_chat",
@@ -21,6 +20,10 @@
     },
     "model_parameters": [],
   },
+  "edit_predictions": {
+    "enabled_in_text_threads": false,
+  },
+  "show_edit_predictions": false,
   "vim_mode": false,
   "telemetry": {
     "diagnostics": false,
