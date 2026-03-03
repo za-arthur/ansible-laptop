@@ -4,17 +4,17 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
     source $HOME/.orbstack/shell/init2.fish
 
-    # fzf integration
-    if type -q fzf
-        fzf --fish | source
-    end
+    # Homebrew
+    eval "$(/opt/homebrew/bin/brew shellenv)"
 
     # PostgreSQL
     fish_add_path "$HOME/.pgenv/pgsql/bin"
     fish_add_path "$HOME/.pgenv/bin"
 
-    # Homebrew
-    eval "$(/opt/homebrew/bin/brew shellenv)"
+    # fzf integration
+    if type -q fzf
+        fzf --fish | source
+    end
 
     fish_add_path "/opt/homebrew/opt/gnu-getopt/bin"
     fish_add_path "/opt/homebrew/opt/llvm/bin"

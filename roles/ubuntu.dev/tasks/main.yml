@@ -9,6 +9,12 @@
   tags:
     - "nvim"
 
+- name: "Install xclip"
+  become: true
+  ansible.builtin.apt:
+    name: "xclip"
+    state: latest
+
 - name: "Import pgenv"
   import_tasks: "pgenv.yml"
   tags:

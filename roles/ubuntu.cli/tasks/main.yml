@@ -1,15 +1,63 @@
 ---
-- name: "Import terminal"
-  tags:
-    - "terminal"
-  import_tasks: "terminal.yml"
+- name: "Install and configue ghostty"
+  block:
+    - name: "Install ghostty"
+      community.general.snap:
+        name: "ghostty"
+        state: "present"
 
-- name: "Import nerd_font"
-  tags:
-    - "nerd_font"
-  import_tasks: "nerd_font.yml"
+    - name: "Create a symlink to the ghostty config directory"
+      file:
+        src: "{{ role_path }}/files/config/ghostty"
+        dest: "{{ local_home }}/.config/ghostty"
+        state: link
 
-- name: "Import CLI tools"
-  tags:
-    - "cli_tools"
-  import_tasks: "tools.yml"
+- name: "Import fish"
+  import_tasks: "fish.yml"
+
+- name: "Install JetBrainsMono nerd font"
+  community.general.homebrew_cask:
+    name: "font-jetbrains-mono-nerd-font"
+    state: latest
+    update_homebrew: true
+    install_options: force
+
+- name: "Install lsd"
+  community.general.homebrew:
+    name: "lsd"
+    state: latest
+
+- name: "Install yq"
+  community.general.homebrew:
+    name: "yq"
+    state: latest
+
+- name: "Install fd"
+  community.general.homebrew:
+    name: "fd"
+    state: latest
+
+- name: "Install fzf"
+  community.general.homebrew:
+    name: "fzf"
+    state: latest
+
+- name: "Install rg"
+  community.general.homebrew:
+    name: "rg"
+    state: latest
+
+- name: "Install bat"
+  community.general.homebrew:
+    name: "bat"
+    state: latest
+
+- name: "Install lnav"
+  community.general.homebrew:
+    name: "lnav"
+    state: latest
+
+- name: "Install glow"
+  community.general.homebrew:
+    name: "glow"
+    state: latest
