@@ -19,5 +19,5 @@ ansible-playbook ubuntu_laptop.yml -K
 Run tasks by tags:
 
 ```
-ansible-playbook ubuntu_laptop.yml -K --tags "common,editors"
+ansible-playbook ubuntu_laptop.yml -K --tags "dotfiles,cli"
 ```
