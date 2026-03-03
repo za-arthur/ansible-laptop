@@ -1,24 +1,13 @@
 ---
-- name: "Ensure cache dir exists"
-  file:
-    path: "{{ common_cache_dir }}"
-    state: directory
+- name: "Install neovim"
+  community.general.homebrew:
+    name: "neovim"
+    state: latest
 
-- name: "Download the neovim release"
-  get_url:
-    url: "{{ nvim_download_location }}"
-    dest: "{{ common_cache_dir }}"
-
-- name: "Extract the neovim tarball"
-  become: true
-  unarchive:
-    src: "{{ common_cache_dir }}/{{ nvim_tarball }}"
-    dest: "/usr/local"
-    owner: "root"
-    group: "root"
-    extra_opts:
-      - "--strip-components"
-      - 1
+- name: "Install npm"
+  community.general.homebrew:
+    name: "npm"
+    state: latest
 
 - name: "Clone the nvim config repository"
   ansible.builtin.git:

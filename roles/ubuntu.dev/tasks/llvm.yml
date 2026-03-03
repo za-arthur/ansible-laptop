@@ -1,0 +1,16 @@
+---
+- name: "Install llvm"
+  community.general.homebrew:
+    name: "llvm"
+    state: latest
+
+- name: "Ensure clangd config dir exist"
+  file:
+    path: "{{ local_home }}/.config/clangd"
+    state: directory
+
+- name: "Create a symlink to the clangd config file"
+  file:
+    src: "{{ role_path }}/files/config/clangd/config.yaml"
+    dest: "{{ local_home }}/.config/clangd/config.yaml"
+    state: link

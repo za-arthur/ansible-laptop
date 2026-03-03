@@ -1,13 +1,15 @@
 ---
-- name: "Import go"
-  import_tasks: "go.yml"
-  tags:
-    - "go"
+- name: "Update Homebrew"
+  community.general.homebrew:
+    update_homebrew: true
+
+- name: "Install go"
+  community.general.homebrew:
+    name: "go"
+    state: latest
 
 - name: "Import nvim"
   import_tasks: "nvim.yml"
-  tags:
-    - "nvim"
 
 - name: "Install xclip"
   become: true
@@ -15,13 +17,28 @@
     name: "xclip"
     state: latest
 
+- name: "Install lazygit"
+  community.general.homebrew:
+    name: "lazygit"
+    state: latest
+
+- name: "Install delta"
+  community.general.homebrew:
+    name: "git-delta"
+    state: latest
+
 - name: "Import pgenv"
   import_tasks: "pgenv.yml"
   tags:
     - "pgenv"
 
-- name: "Import tools"
-  import_tasks: "tools.yml"
-  tags:
-    - "dev_tools"
+- name: "Import PostgreSQL dev tools"
+  import_tasks: "pgtools.yml"
 
+- name: "Import llvm"
+  import_tasks: "llvm.yml"
+
+- name: "Checkout pyenv"
+  community.general.homebrew:
+    name: "pyenv"
+    state: latest
