@@ -82,6 +82,7 @@ Diagnostics:
         readability-function-cognitive-complexity,
         readability-magic-numbers,
         readability-redundant-casting, # <-- high latency so disable
+        readability-implicit-bool-conversion,
       ]
 
 InlayHints:
