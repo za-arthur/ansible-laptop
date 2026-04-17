@@ -4,7 +4,7 @@
     path: "{{ local_home }}/.config/zed"
     state: directory
 
-- name: "Create a symlink to the fish config file"
+- name: "Create a symlink to the zed config file"
   file:
     src: "{{ role_path }}/files/config/zed/settings.json"
     dest: "{{ local_home }}/.config/zed/settings.json"
