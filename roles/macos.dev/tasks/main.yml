@@ -22,6 +22,11 @@
     name: "copilot-cli"
     state: latest
 
+- name: "Install rtk"
+  community.general.homebrew:
+    name: "rtk"
+    state: latest
+
 - name: "Install lazygit"
   community.general.homebrew:
     name: "lazygit"
