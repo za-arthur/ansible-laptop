@@ -16,3 +16,4 @@ Session.vim
 
 .github/copilot-instructions.md
 CLAUDE.md
+.claude/settings.local.json
