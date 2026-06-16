@@ -12,6 +12,8 @@ compile_commands.json
 .clang-format
 Session.vim
 
+.envrc
+
 .DS_Store
 
 .github/copilot-instructions.md

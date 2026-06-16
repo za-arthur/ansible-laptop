@@ -16,18 +16,20 @@ if status is-interactive
         fzf --fish | source
     end
 
-    fish_add_path "/opt/homebrew/opt/gnu-getopt/bin"
-    fish_add_path "/opt/homebrew/opt/llvm/bin"
-    fish_add_path "/opt/homebrew/opt/grep/libexec/gnubin"
+    # This paths should be handled by .envrc
+    # fish_add_path "/opt/homebrew/opt/gnu-getopt/bin"
+    # fish_add_path "/opt/homebrew/opt/llvm/bin"
+    # fish_add_path "/opt/homebrew/opt/grep/libexec/gnubin"
 
     # Other PATH
 
     fish_add_path "$HOME/.local/bin"
     fish_add_path "$HOME/.cargo/bin"
 
-    set -Ux LDFLAGS "-L/opt/homebrew/opt/icu4c/lib -L/opt/homebrew/opt/openssl/lib -L/opt/homebrew/opt/zstd/lib"
-    set -Ux CPPFLAGS "-I/opt/homebrew/opt/icu4c/include -I/opt/homebrew/opt/openssl/include -I/opt/homebrew/opt/zstd/include"
-    set -Ux PKG_CONFIG_PATH "$(brew --prefix openssl)/lib/pkgconfig:$(brew --prefix icu4c)/lib/pkgconfig:$HOME/.pgenv/pgsql/lib/pkgconfig"
+    # This variables should be handled by .envrc
+    # set -Ux LDFLAGS "-L/opt/homebrew/opt/icu4c/lib -L/opt/homebrew/opt/openssl/lib -L/opt/homebrew/opt/zstd/lib"
+    # set -Ux CPPFLAGS "-I/opt/homebrew/opt/icu4c/include -I/opt/homebrew/opt/openssl/include -I/opt/homebrew/opt/zstd/include"
+    # set -Ux PKG_CONFIG_PATH "$(brew --prefix openssl)/lib/pkgconfig:$(brew --prefix icu4c)/lib/pkgconfig:$HOME/.pgenv/pgsql/lib/pkgconfig"
 
     set -Ux MACOSX_DEPLOYMENT_TARGET (sw_vers -productVersion)
 
@@ -41,4 +43,6 @@ if status is-interactive
 
     # Fix tide "normal" icon
     set -U tide_character_vi_icon_default $tide_character_icon
+
+    direnv hook fish | source
 end

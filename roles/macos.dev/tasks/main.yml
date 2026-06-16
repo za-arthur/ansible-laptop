@@ -46,7 +46,12 @@
 - name: "Import devenv"
   import_tasks: "devenv.yml"
 
-- name: "Checkout pyenv"
+- name: "Install pyenv"
   community.general.homebrew:
     name: "pyenv"
+    state: latest
+
+- name: "Install direnv"
+  community.general.homebrew:
+    name: "direnv"
     state: latest
