@@ -8,9 +8,6 @@
     name: "go"
     state: latest
 
-- name: "Install rust"
-  import_tasks: "rust.yml"
-
 - name: "Import nvim"
   import_tasks: "nvim.yml"
 
@@ -45,6 +42,9 @@
 
 - name: "Import llvm"
   import_tasks: "llvm.yml"
+
+- name: "Import devenv"
+  import_tasks: "devenv.yml"
 
 - name: "Checkout pyenv"
   community.general.homebrew:

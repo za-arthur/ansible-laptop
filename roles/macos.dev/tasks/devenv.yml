@@ -1,0 +1,38 @@
+---
+- name: "Check if Nix is installed"
+  stat:
+    path: "/nix/store"
+  register: nix_store
+
+- name: "Install Nix"
+  shell: "curl -sSfL https://artifacts.nixos.org/nix-installer | sh -s -- install"
+  args:
+    creates: "/nix/store"
+  when: not nix_store.stat.exists
+  register: nix_install
+
+- name: "Resolve nix-env binary path"
+  shell: |
+    if command -v nix-env >/dev/null 2>&1; then
+      command -v nix-env
+    elif [ -x /nix/var/nix/profiles/default/bin/nix-env ]; then
+      echo /nix/var/nix/profiles/default/bin/nix-env
+    else
+      exit 1
+    fi
+  register: nix_env_binary
+  changed_when: false
+
+- name: "Upgrade bash with Nix"
+  shell: "{{ nix_env_binary.stdout }} --install --attr bashInteractive -f https://github.com/NixOS/nixpkgs/tarball/nixpkgs-unstable"
+  when: nix_install is changed
+
+- name: "Check if devenv is installed"
+  shell: "{{ nix_env_binary.stdout }} -q | grep -E '^devenv-'"
+  register: devenv_installed
+  changed_when: false
+  failed_when: false
+
+- name: "Install devenv with Nix"
+  shell: "{{ nix_env_binary.stdout }} --install --attr devenv -f https://github.com/NixOS/nixpkgs/tarball/nixpkgs-unstable"
+  when: devenv_installed.rc != 0
