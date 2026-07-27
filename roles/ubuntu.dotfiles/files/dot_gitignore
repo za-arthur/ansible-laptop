@@ -9,8 +9,18 @@ venv/
 
 compile_commands.json
 .editorconfig
+.clang-format
 Session.vim
 
+.envrc
+key.json
+
+.DS_Store
+
 .github/copilot-instructions.md
-CLAUDE.md
+CLAUDE.local.md
+
+docs/superpowers/plans/
+antithesis/scratchbook/
+
 .claude/settings.local.json
