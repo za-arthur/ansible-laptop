@@ -1,8 +1,12 @@
 if status is-interactive
     set fish_greeting ""
 
+    # Disable mise auto activation
+    set -Ux MISE_FISH_AUTO_ACTIVATE 0
+
     # Commands to run in interactive sessions can go here
     source $HOME/.orbstack/shell/init2.fish
+    set -x DOCKER_HOST unix://$HOME/.orbstack/run/docker.sock
 
     # Homebrew
     eval "$(/opt/homebrew/bin/brew shellenv)"
