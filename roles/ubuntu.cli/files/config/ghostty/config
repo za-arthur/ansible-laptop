@@ -15,7 +15,7 @@ cursor-style = "block"
 cursor-click-to-move = "false"
 
 gtk-titlebar-style = "tabs"
-copy-on-select = "true"
+copy-on-select = "both"
 clipboard-paste-protection = "false"
 quit-after-last-window-closed = "true"
 
