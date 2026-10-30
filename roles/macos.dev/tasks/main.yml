@@ -14,11 +14,6 @@
 - name: "Import zed"
   import_tasks: "zed.yml"
 
-- name: "Install copilot-cli"
-  community.general.homebrew:
-    name: "copilot-cli"
-    state: latest
-
 - name: "Install rtk"
   community.general.homebrew:
     name: "rtk"
